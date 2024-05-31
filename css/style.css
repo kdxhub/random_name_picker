@@ -6,12 +6,12 @@
 
 @font-face {
   font-family: 'hanyi-65J';
-  src: url('./fonts/hanyi-65J.ttf');
+  src: url('../fonts/hanyi-65J.ttf');
 }
 
 @font-face {
   font-family: 'hanyi-65W';
-  src: url('./fonts/hanyi-65W.ttf');
+  src: url('../fonts/hanyi-65W.ttf');
 }
 
 * {
@@ -25,7 +25,21 @@ html {
 }
 
 body {
-  margin: 0
+  margin: 0;
+  background: url('../res/background.png');
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  margin: auto;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-position: center 0;
+  background-attachment: fixed;
 }
 
 button{
@@ -46,16 +60,20 @@ button{
   outline:none;
   vertical-align:middle;
   cursor:pointer;
-  color:#333
+  color: #000000;
   width:7.3rem;
   height:1.6rem;
-  background-image:url('./res/objects.png');
+  background-image:url('../res/objects.png');
   background-repeat:no-repeat;
   background-size:21.1666666667rem 20rem;
   background-position:25.9615384615% 80.4347826087%;
 }
 
 button:disabled{cursor:not-allowed}
+
+p.black {
+  color: #333;
+}
 
 .container {
   display: flex; /* 设置容器为Flex布局 */
@@ -523,7 +541,7 @@ body {
   font-family0: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  color: #606c71
+  color: #FFFFFF
 }
 
 #skip-to-content {
@@ -601,7 +619,7 @@ a:hover {
   }}
 
 .page-header {
-  color: #000;
+  color: #FFFFFF;
   text-align: center;
   background-color: rgba(255,255,255,0);
   background-image: linear-gradient(120deg, rgba(255,255,255,0), rgba(255,255,255,0))
@@ -714,7 +732,7 @@ a:hover {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-weight: normal;
-  color: #159957
+  color: #FAF9F6
 }
 
 .main-content p {
@@ -735,7 +753,7 @@ a:hover {
   margin-top: 0;
   margin-bottom: 1rem;
   font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  color: #567482;
+  color: #FFFFFF;
   word-wrap: normal;
   background-color: #f3f6fa;
   border: solid 1px #dce6f0;
