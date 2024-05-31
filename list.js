@@ -1,0 +1,3 @@
+var list = ["张三","李四","王二","汪峰","夏可","秦沐风","王春燕","邱二","易璞惠","天天","路玛","Ryde","路易·维斯","Hello world","蔡钤","天龘","亓才子","星","穹","荧","空","蔡徐","嘉禾","喧舟","晴栀","嘉懿","朱静","王俊","赵铁牛","方建军","王建国","黄轩","kdxiaoyi"];
+console.log('>>> 候选列表已加载，共计' + list.length + '项');console.log("Copyright (C) 2024 kdxiaoyi. All right reserved.");
+document.getElementById('main-loadedList').innerHTML="共计"+list.length+"名幸运儿，抽取概率均等";

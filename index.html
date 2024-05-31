@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Name Picker - kdxiaoyi</title>
+	<link rel="icon" href="./favicon.ico"></link>
+	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./css/videoFrame.css">
+	<link rel="stylesheet" href="./css/result.css">
+	<link rel="stylesheet" href="./css/style.css">
+	</head>
+<body>
+  <div class="main" id="main"><!-- 主页面 -->
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Random Name Picker</h1>
+      <h2 class="project-tagline"></h2>
+    </header>
+    <main id="content" class="main-content" role="main">
+      <div class="center">
+        <p>随机点名助手！拒绝纠结症！</p>
+        <p id="main-loadedList"></p>
+        <button id="start" onclick="start()" class="starrail">跃迁10次</button>
+        <footer class="site-footer">
+          <span class="site-footer-credits">
+			  		<small><p>kdxiaoyi (C) 2024</p></small>
+            <small><p>All Copyringht Reserved.</p></small>
+            <small><p>↓ 开源项目地址 ↓</p><a href="https://github.com/kdxhub/random_name_picker">kdxhub/random_name_picker</a></small>
+          </span>
+        </footer>
+      </div>
+    </main>
+  </div>
+  <div class="videoFrame" id="videoFrame"><!-- 抽卡动画 -->
+  </div>
+  <div class="result" id="result"><!-- 结果展示 -->
+  </div>
+  <script type="text/javascript" language="JavaScript" src="./js.js"></script>
+	<script type="text/javascript" language="JavaScript" src="./list.js"></script>
+</body>
+</html>
