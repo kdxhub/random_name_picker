@@ -5,12 +5,12 @@
   <title>Random Name Picker - kdxiaoyi</title>
 	<link rel="icon" href="./favicon.ico"></link>
 	<link rel="stylesheet" href="./css/main.css">
-	<link rel="stylesheet" href="./css/videoFrame.css">
+	<link rel="stylesheet" href="./css/cgFrame.css">
 	<link rel="stylesheet" href="./css/result.css">
 	<link rel="stylesheet" href="./css/style.css">
 	</head>
 <body>
-  <div class="main" id="main"><!-- 主页面 -->
+  <div class="main" id="main" .style="display:none"><!-- 主页面 -->
     <header class="page-header" role="banner">
       <h1 class="project-name">Random Name Picker</h1>
       <h3 class="project-tagline">Pro Max Ultra Utterly Big Hyper Large Plus +</h3>
@@ -31,7 +31,11 @@
       </div>
     </main>
   </div>
-  <div class="videoFrame" id="videoFrame"><!-- 抽卡动画 -->
+  <div class="cgFrame" id="cgFrame"><!-- 抽卡动画 -->
+    <video id="cg" class="cg" disablepictureinpicture=true loop=false muted=true preload="auto">
+      <source src="./res/cg.mp4" type="video/mp4" />
+      抱歉，遇到了些问题。请检查你的浏览器版本。
+    </video>
   </div>
   <div class="result" id="result"><!-- 结果展示 -->
   </div>
