@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <title>Random Name Picker - kdxiaoyi</title>
 	<link rel="icon" href="./favicon.ico"></link>
-	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./css/style.css" />
+	<link rel="stylesheet" href="./css/main.css" />
 	<link rel="stylesheet" href="./css/cgFrame.css" />
 	<link rel="stylesheet" href="./css/result.css" />
-	<link rel="stylesheet" href="./css/style.css" />
+	<link rel="stylesheet" href="./css/total.css" />
 	<!-- 资源预加载便于使用 -->
 	<link rel="preload" href="./js.js" as="javascript" />
 	<link rel="preload" href="./list.js" as="javascript" />
@@ -46,10 +47,16 @@
       抱歉，遇到了些问题。请检查你的浏览器版本。
     </video>
   </div>
-  <div class="result" id="result"><!-- 结果展示 -->
+  <div class="resultDisabled" id="result"><!-- 结果展示 -->
     <div class="srtitle">
-      <i class="wishingIcon"></i><p>跃迁</p><p>结果展示</p>
+      <i class="wishingIcon" id="wishingIcon">　.</i><p>跃迁</p><p>结果展示</p>
     </div>
+    <div class="showing" id="showing">
+      <p id="nowName"></p>
+    </div>
+  </div>
+  <div class="total" id="total"><!-- 结果总和 -->
+    
   </div>
   <script type="text/javascript" language="JavaScript" src="./list.js"></script>
 	<script type="text/javascript" language="JavaScript" src="./js.js"></script>

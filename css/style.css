@@ -6,23 +6,28 @@
 
 @font-face {
   font-family: 'hanyi-65J';
-  src: url('./fonts/hanyi-65J.ttf');
+  src: url('https://kdx233.github.io/res/fonts/hanyi-65J.ttf');
 }
 
 @font-face {
   font-family: 'hanyi-65W';
-  src: url('./fonts/hanyi-65W.ttf');
+  src: url('https://kdx233.github.io/res/fonts/hanyi-65W.ttf');
+}
+
+@font-face {
+  font-family: 'din';
+  src: url('https://kdx233.github.io/res/fonts/DINPro-Medium.otf');
 }
 
 * {
-  font-family: 'hanyi-65W','hanyi-65J';
-  fonts: 'hanyi-65W','hanyi-65J';
+  font-family: 'din','hanyi-65W','hanyi-65J';
+  fonts: 'din','hanyi-65W','hanyi-65J';
   box-sizing: border-box;
 }
 
 html {
-  font-family: 'hanyi-65W','hanyi-65J';
-  fonts: 'hanyi-65W','hanyi-65J';
+  font-family: 'din','hanyi-65W','hanyi-65J';
+  fonts: 'din','hanyi-65W','hanyi-65J';
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }

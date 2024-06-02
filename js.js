@@ -4,7 +4,6 @@ function unhide(id) {document.getElementById(id).className=id};
 function start() {//「祈愿10次」按钮点击
   console.log('start wishing')
   //生成抽卡结果
-  var output = [];var outputStar = [];
   for (i = 0; i < 10; i++) { 
     step = range(0,name.length - 1);
     if ( output.indexOf(step) != -1 ) {console.log(string(i--) + '重复随机值' + step);continue;};
@@ -21,9 +20,24 @@ function start() {//「祈愿10次」按钮点击
   document.getElementById("cg").play();
 };
 function cgEnded() {//cg播放完成回调
+  next();
   hide('cgFrame');unhide('result');
+  document.getElementById('result').setAttribute("onclick", "next()");
+};
+function next() {//抽卡结果逐个展示-下一个
+  now++;
+  if ( now >= 10 ) {total();return;};
+  document.getElementById('nowName').innerHTML=output[now];
+};
+function total() {//抽卡结果顺序展示完毕，展示全部
+  hide('result');unhide('total');
+};
+function total_back() {//返回抽卡界面
+  hide('total');unhide('main');
 };
 
+//声明变量
+var output = [];var outputStar = [];var now = -1;
 // 监听ended事件并注册回调
 document.getElementById("cg").addEventListener("ended", (event) => {cgEnded();});
 console.log('Main function loaded.');

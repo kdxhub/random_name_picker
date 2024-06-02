@@ -17,7 +17,8 @@
   background-position:88.6477462437% 78.7234042553%;
   background-image:url('../res/objects.png');
   background-repeat:no-repeat;
-  background-size:21.1666666667rem 20rem
+  background-size:21.1666666667rem 20rem;
+  color: rgba(0,0,0,0);
 }
 .srtitle{
   -webkit-box-flex:1;
@@ -26,6 +27,11 @@
   display:block;
   float:left;
   margin-right:.4rem;
+  width: 100%;
+  min-width: 100%;
+  white-space:nowrap;
+  top: 5%;
+  left: 5%;
 }
 .srtitle p{
   font-size:.5rem;
@@ -37,4 +43,43 @@
   font-size:.6rem;
   line-height:.6rem;
   color:#fff;
+}
+.showing p {
+  background: -webkit-linear-gradient(135deg,
+    #0eaf6d,
+    #ff6ac6 25%,
+    #147b96 50%,
+    #e6d205 55%,
+    #2cc4e0 60%,
+    #8b2ce0 80%,
+    #ff6384 95%,
+    #08dfb4);
+  /* 文字颜色填充设置为透明 */
+  -webkit-text-fill-color: transparent;
+  /* 背景裁剪，即让文字使用背景色 */
+  -webkit-background-clip: text;
+  /* 背景图放大一下，看着柔和一些 */
+  -webkit-background-size: 200% 100%;
+  /* 应用动画flowCss 12秒速度 无限循环 线性匀速动画 **/
+  -webkit-animation: flowCss 12s infinite linear;
+  font-size: 4em;
+  text-stroke: 0.02em #FFFFFF;
+  /* 兼容Webkit(Chrome/Safari)内核浏览器的写法 */
+  -webkit-text-stroke: 0.02em #FFFFFF;
+  text-align: center;
+}
+
+@-webkit-keyframes flowCss {
+  0% {
+  /* 移动背景位置 */
+  background-position: 0 0;
+  }
+
+  100% {
+  background-position: -400% 0;
+  }
+}
+
+.showing p:hover {
+  -webkit-animation: flowCss 4s infinite linear;
 }
