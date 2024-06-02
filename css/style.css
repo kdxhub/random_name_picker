@@ -6,12 +6,12 @@
 
 @font-face {
   font-family: 'hanyi-65J';
-  src: url('../fonts/hanyi-65J.ttf');
+  src: url('./fonts/hanyi-65J.ttf');
 }
 
 @font-face {
   font-family: 'hanyi-65W';
-  src: url('../fonts/hanyi-65W.ttf');
+  src: url('./fonts/hanyi-65W.ttf');
 }
 
 * {

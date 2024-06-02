@@ -16,7 +16,7 @@
 	<link rel="preload" href="./res/cg3.mp4" as="video" />
 	<link rel="preload" href="./res/cg4.mp4" as="video" />
 	<link rel="preload" href="./res/cg5.mp4" as="video" />
-	<link rel="preload" href="./fonts/hanyi-65W.ttf" as="font" />
+	<link rel="preload" href="./css/fonts/hanyi-65W.ttf" as="font" />
 	</head>
 <body>
   <div class="main" id="main" .style="display:none"><!-- 主页面 -->
@@ -33,22 +33,25 @@
         <footer class="site-footer">
           <span class="site-footer-credits">
 			  		<small><p>kdxiaoyi (C) 2024</p></small>
-            <small><p>All Copyringht Reserved.</p></small>
+            <small><p>All Copyright Reserved.</p></small>
             <small><p>↓ 开源项目地址 ↓</p><a href="https://github.com/kdxhub/random_name_picker">kdxhub/random_name_picker</a></small>
           </span>
         </footer>
       </div>
     </main>
   </div>
-  <div class="cgFrame" id="cgFrame"><!-- 抽卡动画 -->
-    <video id="cg" class="cg" disablepictureinpicture=true loop=false muted=true preload="auto">
-      <source src="./res/cg5.mp4" type="video/mp4" />
+  <div class="cgFrameDisabled" id="cgFrame"><!-- 抽卡动画 -->
+    <video id="cg" class="cg" disablepictureinpicture=true preload="auto">
+      <source src="./res/cg3.mp4" type="video/mp4" />
       抱歉，遇到了些问题。请检查你的浏览器版本。
     </video>
   </div>
   <div class="result" id="result"><!-- 结果展示 -->
+    <div class="srtitle">
+      <i class="wishingIcon"></i><p>跃迁</p><p>结果展示</p>
+    </div>
   </div>
-  <script type="text/javascript" language="JavaScript" src="./js.js"></script>
-	<script type="text/javascript" language="JavaScript" src="./list.js"></script>
+  <script type="text/javascript" language="JavaScript" src="./list.js"></script>
+	<script type="text/javascript" language="JavaScript" src="./js.js"></script>
 </body>
 </html>
