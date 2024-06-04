@@ -18,8 +18,8 @@
 	<link rel="preload" href="./res/cg4.mp4" as="video" type="video/mp4" />
 	<link rel="preload" href="./res/cg5.mp4" as="video" type="video/mp4" />
 	</head>
-<body>
-  <div class="main" id="main" .style="display:none"><!-- 主页面 -->
+<body><div class="generalFrame" id="generalFrame">
+  <div class="main" id="main"><!-- 主页面 -->
     <header class="page-header" role="banner">
       <h1 class="project-name">Random Name Picker</h1>
       <h3 class="project-tagline">Pro Max Ultra Utterly Big Hyper Large Plus +</h3>
@@ -28,8 +28,8 @@
       <div class="center">
         <p>随机点名助手！拒绝纠结症！</p>
         <p id="main-loadedList"></p>
-        <p>↓ 启动 ↓</p>
-        <button id="start" onclick="start()" class="sr"><p class="black" style="position:relative;top: 37%;">跃迁10次</p></button>
+        <p id="startGuidancePrompt">↓ 启动 ↓</p>
+        <button id="start" onclick="start()" class="sr"><p class="black" id="startButtonTips" style="position:relative;top: 37%;">跃迁10次</p></button>
         <footer class="site-footer">
           <span class="site-footer-credits">
 			  		<small><p>kdxiaoyi (C) 2024</p></small>
@@ -52,13 +52,13 @@
     <div class="srtitle">
       <i class="wishingIcon" id="wishingIcon">　.</i><p>跃迁</p><p>结果展示</p>
     </div>
-    <div class="showing" id="showing">
-      <p id="nowName"></p>
+    <div class="showingDisabled" id="showing">
+      <p id="nowName" class="showing"></p>
     </div>
   </div>
-  <div class="total" id="total"><!-- 结果总和 -->
+  <div class="totalDisabled" id="total"><!-- 结果总和 -->
     
-  </div>
+  </div></div>
   <script type="text/javascript" language="JavaScript" src="./list.js"></script>
 	<script type="text/javascript" language="JavaScript" src="./js.js"></script>
 </body>

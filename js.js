@@ -6,7 +6,7 @@ function start() {//「祈愿10次」按钮点击
   //生成抽卡结果
   for (i = 0; i < 10; i++) { 
     step = range(0,name.length - 1);
-    if ( output.indexOf(step) != -1 ) {console.log(string(i--) + '重复随机值' + step);continue;};
+    if ( output.indexOf('${name[step]}') != -1 ) {console.log(string(i--) + '重复随机值' + step);continue;};
     output.push (name[step]);outputStar.push (star[step])
     if ( output.length == 10 ) {break;};
   };
@@ -20,6 +20,7 @@ function start() {//「祈愿10次」按钮点击
   document.getElementById("cg").play();
 };
 function cgEnded() {//cg播放完成回调
+  document.getElementById("cg").pause();
   next();
   hide('cgFrame');unhide('result');
   document.getElementById('result').setAttribute("onclick", "next()");
@@ -40,4 +41,4 @@ function total_back() {//返回抽卡界面
 var output = [];var outputStar = [];var now = -1;
 // 监听ended事件并注册回调
 document.getElementById("cg").addEventListener("ended", (event) => {cgEnded();});
-console.log('Main function loaded.');
+console.log('主函数加载成功');console.log("Copyright (C) 2024 kdxiaoyi. All right reserved.");
