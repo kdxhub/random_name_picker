@@ -69,6 +69,20 @@
   text-align: center;
 }
 
+.hiding p {
+  background: rgba(0,0,0,1);
+  /* 文字颜色填充设置为透明 */
+  -webkit-text-fill-color: transparent;
+  /* 背景裁剪，即让文字使用背景色 */
+  -webkit-background-clip: text;
+  /* 背景图放大一下，看着柔和一些 */
+  -webkit-background-size: 200% 100%;
+  /* 应用动画flowCss 12秒速度 无限循环 线性匀速动画 **/
+  -webkit-animation: flowCss 12s infinite linear;
+  font-size: 4em;
+  text-align: center;
+}
+
 @-webkit-keyframes flowCss {
   0% {
   /* 移动背景位置 */

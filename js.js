@@ -28,6 +28,7 @@ function cgEnded() {//cg播放完成回调
 function next() {//抽卡结果逐个展示-下一个
   now++;
   if ( now >= 10 ) {total();return;};
+  document.getElementById('nowNameDiv').setAttribute("class","hiding");
   document.getElementById('nowName').innerHTML=output[now];
 };
 function total() {//抽卡结果顺序展示完毕，展示全部
