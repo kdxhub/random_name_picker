@@ -24,6 +24,9 @@ function cgEnded() {//cg播放完成回调
   next();
   hide('cgFrame');unhide('result');
   document.getElementById('result').setAttribute("onclick", "next()");
+  //播放背景音乐（自动进度归0）
+  document.getElementById('resultBgm').currentTime = 0;
+  document.getElementById('resultBgm').play();
 };
 function next() {//抽卡结果逐个展示-下一个
   now++;
@@ -36,10 +39,14 @@ function total() {//抽卡结果顺序展示完毕，展示全部
 };
 function total_back() {//返回抽卡界面
   hide('total');unhide('main');
+  document.getElementById('resultBgm').pause();
 };
 
 //声明变量
 var output = [];var outputStar = [];var now = -1;
 // 监听ended事件并注册回调
 document.getElementById("cg").addEventListener("ended", (event) => {cgEnded();});
+//背景音乐单曲循环（Event方法）
+document.getElementById("resultBgm").addEventListener("ended", (event) => {document.getElementById('resultBgm').currentTime = 0;document.getElementById('resultBgm').play();});
+
 console.log('主函数加载成功');console.log("Copyright (C) 2024 kdxiaoyi. All right reserved.");

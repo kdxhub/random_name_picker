@@ -17,6 +17,7 @@
 	<link rel="preload" href="./res/cg3.mp4" as="video" type="video/mp4" />
 	<link rel="preload" href="./res/cg4.mp4" as="video" type="video/mp4" />
 	<link rel="preload" href="./res/cg5.mp4" as="video" type="video/mp4" />
+	<link rel="preload" href="./res/result-bgm.ogg" as="audio" type="audio/ogg" />
 	</head>
 <body><div class="generalFrame" id="generalFrame">
   <div class="main" id="main"><!-- 主页面 -->
@@ -48,13 +49,14 @@
       抱歉，遇到了些问题。请检查你的浏览器版本。
     </video>
   </div>
-  <div class="resultDisabled" id="result"><!-- 结果展示 -->
+  <div class="result" id="result"><!-- 结果展示 -->
     <div class="srtitle">
       <i class="wishingIcon" id="wishingIcon">　.</i><p>跃迁</p><p>结果展示</p>
     </div>
     <div class="hiding" id="nowNameDiv">
       <p id="nowName" class="showing">结果生成错误：未知错误。</p>
     </div>
+    <audio id="resultBgm" preload="auto" style="display: none;" loop><source src="./res/result-bgm.ogg" type="audio/ogg" />未能加载背景音乐，请检查你的浏览器版本</audio>
   </div>
   <div class="totalDisabled" id="total"><!-- 结果总和 -->
     
