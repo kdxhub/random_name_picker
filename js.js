@@ -1,6 +1,7 @@
-function range(min,max) {return Math.round(Math.random()*(max-min)+min);};function getQueryString(name) {let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");let r = window.location.search.substr(1).match(reg);if (r != null) {return unescape(r[2]);};return null;};
+function range(min,max) {return Math.round(Math.random()*(max-min)+min);};function getQueryString(name) {let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");let r = window.location.search.substr(1).match(reg);if (r != null) {return unescape(r[2]);};return null;};function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms));};
 function hide(id) {document.getElementById(id).className=(document.getElementById(id).className+'Disabled')};
 function unhide(id) {document.getElementById(id).className=id};
+function r() {start();cgEnded();};// debug:快速生成结果并展示
 function start() {//「祈愿10次」按钮点击
   console.log('start wishing')
   //生成抽卡结果
@@ -26,13 +27,18 @@ function cgEnded() {//cg播放完成回调
   document.getElementById('result').setAttribute("onclick", "next()");
   //播放背景音乐（自动进度归0）
   document.getElementById('resultBgm').currentTime = 0;
+  document.getElementById('result').setAttribute("loop", "");
   document.getElementById('resultBgm').play();
 };
 function next() {//抽卡结果逐个展示-下一个
   now++;
   if ( now >= 10 ) {total();return;};
-  document.getElementById('nowNameDiv').setAttribute("class","hiding");
+  document.getElementById('result').setAttribute("onclick", "next():Banned");
   document.getElementById('nowName').innerHTML=output[now];
+  document.getElementById('nowNameDiv').setAttribute("class","hiding");
+  document.getElementById('ring').currentTime = 0;
+  document.getElementById('ring').play();
+  sleep(1000).then(() => { document.getElementById('nowNameDiv').setAttribute("class","showing");document.getElementById('result').setAttribute("onclick", "next()"); });
 };
 function total() {//抽卡结果顺序展示完毕，展示全部
   hide('result');unhide('total');

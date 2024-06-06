@@ -3,13 +3,15 @@
   left: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 .resultDisabled{
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 0%;
+  height: 0%;
   display: none;
+  overflow: hidden;
 }
 .wishingIcon{
   width:1.2rem;
@@ -44,7 +46,7 @@
   line-height:.6rem;
   color:#fff;
 }
-.showing p {
+.showing {
   background: -webkit-linear-gradient(135deg,
     #0eaf6d,
     #ff6ac6 25%,
@@ -69,31 +71,41 @@
   text-align: center;
 }
 
-.hiding p {
-  background: rgba(0,0,0,1);
-  /* 文字颜色填充设置为透明 */
-  -webkit-text-fill-color: transparent;
-  /* 背景裁剪，即让文字使用背景色 */
-  -webkit-background-clip: text;
-  /* 背景图放大一下，看着柔和一些 */
-  -webkit-background-size: 200% 100%;
-  /* 应用动画flowCss 12秒速度 无限循环 线性匀速动画 **/
-  -webkit-animation: flowCss 12s infinite linear;
+.hiding {
+  -webkit-animation: comeIn 1s 1 ease;
   font-size: 4em;
   text-align: center;
 }
 
-@-webkit-keyframes flowCss {
+@keyframes comeIn {
   0% {
-  /* 移动背景位置 */
-  background-position: 0 0;
+    background: rgba(0,0,0,1);
+    -webkit-text-fill-color: rgba(0,0,0,1);
+    -webkit-background-clip: text;
+    -webkit-background-size: 200% 100%;
+    font-size: 1000%;
+    text-align: center;
   }
-
   100% {
-  background-position: -400% 0;
+    background: rgba(0,0,0,1);
+    -webkit-text-fill-color: rgba(0,0,0,1);
+    -webkit-background-clip: text;
+    -webkit-background-size: 200% 100%;
+    font-size: 4em;
+    text-align: center;
   }
 }
 
-.showing p:hover {
+@keyframes flowCss {
+  0% {
+  /* 移动背景位置 */
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -400% 0;
+  }
+}
+
+.showing *:hover {
   -webkit-animation: flowCss 4s infinite linear;
 }
