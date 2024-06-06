@@ -52,7 +52,21 @@ function total_back() {//返回抽卡界面
 var output = [];var outputStar = [];var now = -1;
 // 监听ended事件并注册回调
 document.getElementById("cg").addEventListener("ended", (event) => {cgEnded();});
-//背景音乐单曲循环（Event方法）
+//背景音乐单曲循环（Event方法）（事实上loop和Event同时生效了）
 document.getElementById("resultBgm").addEventListener("ended", (event) => {document.getElementById('resultBgm').currentTime = 0;document.getElementById('resultBgm').play();});
+//加载list.js
+if ( getQueryString('list') == null ) {
+  let listJsElement=document.createElement("script");
+  listJsElement.setAttribute("type","text/javascript");
+  listJsElement.setAttribute("src",'./list.js');
+  document.body.appendChild(listJsElement);
+  console.log('未找到三方list.js');
+} else {
+  let listJsElement=document.createElement("script");
+  listJsElement.setAttribute("type","text/javascript");
+  listJsElement.setAttribute("src",getQueryString('list'));
+  document.body.appendChild(listJsElement);
+  document.getElementById('listJs').setAttribute("src", getQueryString('list'));
+};
 
 console.log('主函数加载成功');console.log("Copyright (C) 2024 kdxiaoyi. All right reserved.");
