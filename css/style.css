@@ -3,17 +3,14 @@
   margin: auto;
   text-align: center;
 }
-
 @font-face {
   font-family: 'hanyi-65J';
   src: url('https://kdx233.github.io/res/fonts/hanyi-65J.ttf');
 }
-
 @font-face {
   font-family: 'hanyi-65W';
   src: url('https://kdx233.github.io/res/fonts/hanyi-65W.ttf');
 }
-
 @font-face {
   font-family: 'din';
   src: url('https://kdx233.github.io/res/fonts/DINPro-Medium.otf');

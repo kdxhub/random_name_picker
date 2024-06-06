@@ -1,0 +1,28 @@
+---
+title: "错误查询"
+---
+<small><a href="../">←返回目录</a> | <a href="https://kdxhub.github.io/random_name_picker/">查看项目示例</a></small><br>
+
+> 使用Ctrl+F或Command+F来快速查找
+
+### E01
+您的浏览器不支持`<video>`控件导致了此问题。<br>
+升级到最新版本的Chrome/Edge，然后重试。
+
+### E02
+展示结果时未能设置`nowName`对应`<p>`的值。<br>
+查看console输出，之后提交ISSUE。
+
+### E03
+您的浏览器不支持`<audio>`控件导致了此问题。<br>
+升级到最新版本的Chrome/Edge，然后重试。
+
+### E04
+所加载的`list.js`中`star`数组与`name`数组长度不一样。<br>
+检查`list.js`中二者的长度，并修正错误后重试。<br>
+在console中可以看到检测到的二者长度。
+
+### E05
+`list.js`中`star`或`name`数组长度太小。<br>
+制作点名表时，所包括的名字必须超过10个。<br>
+这是为了防止*防重复*模块陷入死循环而有的限制。<br>
