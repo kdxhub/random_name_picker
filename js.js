@@ -32,14 +32,18 @@ function cgEnded() {//cg播放完成回调
 };
 function next() {//抽卡结果逐个展示-下一个
   now++;
-  if ( now >= 10 ) {total();return;};
-  document.getElementById('result').setAttribute("onclick", "next():Banned");
+  if ( now >= 10 ) {console.log('展示完毕，进入total');total();return;};console.log('展示下一个 now='+now)
+  document.getElementById('result').setAttribute("onclick", "nextBan()");
   document.getElementById('nowName').innerHTML=output[now];
-  document.getElementById('nowNameDiv').setAttribute("class","hiding");
+  document.getElementById('nowName').setAttribute("class","p-hiding");
   document.getElementById('ring').currentTime = 0;
   document.getElementById('ring').play();
-  sleep(1000).then(() => { document.getElementById('nowNameDiv').setAttribute("class","showing");document.getElementById('result').setAttribute("onclick", "next()"); });
+  sleep(1000).then(() => {
+    document.getElementById('nowName').setAttribute("class", "p-showing");
+    document.getElementById('result').setAttribute("onclick", "next()");
+  });
 };
+function nextBan() {console.log('E06:动画中不能下一个 now='+now);return;};//抽卡结果下一个（动画中直接返回）
 function total() {//抽卡结果顺序展示完毕，展示全部
   hide('result');unhide('total');
 };
@@ -67,6 +71,11 @@ if ( getQueryString('list') == null ) {
   listJsElement.setAttribute("src",getQueryString('list'));
   document.body.appendChild(listJsElement);
   document.getElementById('listJs').setAttribute("src", getQueryString('list'));
+  console.log('找到三方list.js  src='+getQueryString('list'));
 };
+// 禁止选择文本（本来可以换更加隐蔽的写法，但是尊重下用反防止复制插件的人）
+function noSelect() {return false;};
+// 检查javascript是否启用（未启用则主main不会显示，而是弹出提示）
+document.getElementById("main").setAttribute("class","main");document.getElementById("noscript").setAttribute("style","display:none;");
 
 console.log('主函数加载成功');console.log("Copyright (C) 2024 kdxiaoyi. All right reserved.");

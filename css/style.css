@@ -21,6 +21,7 @@ html:not(.is-mobile) *, html:not(.is-mobile) :after, html:not(.is-mobile) :befor
 * {
   font-family: 'din','hanyi-65W','hanyi-65J';
   box-sizing: border-box;
+  user-select: none; /* 全局禁用选中，因为隔壁的脚本没有什么作用 */
 }
 
 html {

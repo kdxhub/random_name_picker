@@ -4,6 +4,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  display: table;
 }
 .resultDisabled{
   top: 0;
@@ -13,99 +14,150 @@
   display: none;
   overflow: hidden;
 }
-.wishingIcon{
-  width:1.2rem;
-  height:1.2rem;
-  background-position:88.6477462437% 78.7234042553%;
-  background-image:url('../res/objects.png');
-  background-repeat:no-repeat;
-  background-size:21.1666666667rem 20rem;
-  color: rgba(0,0,0,0);
+
+/* 左上角图标栏 */
+.srheader {
+  position: absolute;
+  left: 2vw;
+  top: 2vh;
+  width: 98vw;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; 
+  margin-bottom: .55rem;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  unicode-bidi: isolate;
 }
-.srtitle{
-  -webkit-box-flex:1;
-  -ms-flex:auto;
-  flex:auto;
-  display:block;
-  float:left;
-  margin-right:.4rem;
-  width: 100%;
-  min-width: 100%;
-  white-space:nowrap;
-  top: 5%;
-  left: 5%;
+.srtitle {
+  -webkit-box-flex: 1;
+  -ms-flex: auto;
+  flex: auto;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  display: block;
+  unicode-bidi: isolate;
 }
-.srtitle p{
-  font-size:.5rem;
-  line-height:.5rem;
-  color:#efda99;
-  margin-bottom:.1rem;
+.wishingIcon {
+  display: block;
+  float: left;
+  margin-right: .4rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-position: 88.6477462437% 78.7234042553%;
+  background-image: url('../res/objects.png');
+  background-repeat: no-repeat;
+  background-size: 21.1666666667rem 20rem;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  font-style: normal;
+  color: gray;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
-.srtitle p:last-of-type{
-  font-size:.6rem;
-  line-height:.6rem;
-  color:#fff;
+.srtitleP1 {
+  font-size: .5rem;
+  line-height: .5rem;
+  color: #efda99;
+  margin-bottom: .1rem;
+  width: 10vw;
 }
-.showing {
-  background: -webkit-linear-gradient(135deg,
-    #0eaf6d,
-    #ff6ac6 25%,
-    #147b96 50%,
-    #e6d205 55%,
-    #2cc4e0 60%,
-    #8b2ce0 80%,
-    #ff6384 95%,
-    #08dfb4);
-  /* 文字颜色填充设置为透明 */
-  -webkit-text-fill-color: transparent;
-  /* 背景裁剪，即让文字使用背景色 */
-  -webkit-background-clip: text;
-  /* 背景图放大一下，看着柔和一些 */
-  -webkit-background-size: 200% 100%;
-  /* 应用动画flowCss 12秒速度 无限循环 线性匀速动画 **/
-  -webkit-animation: flowCss 12s infinite linear;
-  font-size: 4em;
-  text-stroke: 0.02em #FFFFFF;
-  /* 兼容Webkit(Chrome/Safari)内核浏览器的写法 */
-  -webkit-text-stroke: 0.02em #FFFFFF;
+.srtitleP2 {
+  font-size: .6rem;
+  line-height: .6rem;
+  color: #fff;
+  width: 10vw;
+}
+
+/* 返回按钮 */
+@media screen and (height < calc(100vw * 0.5625)) {/* 若高度不够则高度占满 */
+  .srreturn {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .srreturnBtn{
+    right: calc(( 100vw - ( 100vh / 0.5625 ) ) / 2 + 2vw);
+  }
+} 
+@media screen and (height >= calc(100vw * 0.5625)) {/* 否则占满宽度 */
+  .srreturn {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .srreturnBtn{
+    right: 2vw;
+  }
+} 
+.srreturnBtn{
+  position: absolute;
+  display: block;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-position: 99.6694214876% 5.8771929825%;
+  background-image: url('../res/objects.png');
+  background-repeat: no-repeat;
+  background-size: 21.1666666667rem 20rem;
+  z-index: 9;
+}
+
+/* 中间结果展示 */
+.p-showing{
   text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 5rem;
+  /* 字体背景动画 */
+    background: -webkit-linear-gradient(135deg,#0eaf6d,#ff6ac6 25%,#147b96 50%,#e6d205 55%,#2cc4e0 60%,#8b2ce0 80%,#ff6384 95%,#08dfb4);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-background-size: 200% 100%;
+    background-size: 200% 100%;
+    -webkit-animation: p-resultShowing-frames 24s infinite linear;
+    animation: p-resultShowing-frames 24s infinite linear;
 }
-
-.hiding {
-  -webkit-animation: comeIn 1s 1 ease;
-  font-size: 4em;
+@keyframes p-resultShowing-frames {
+  0% {background-position: 0 0;}
+  50% {background-position: -400% 0;}
+  100% {background-position: 0 0;}
+}
+.p-hiding{
   text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  color:#000;
+  -webkit-animation: p-resultHiding-frames 1s 1 linear;
+  animation: p-resultHiding-frames 1s 1 linear;
 }
-
-@keyframes comeIn {
-  0% {
-    background: rgba(0,0,0,1);
-    -webkit-text-fill-color: rgba(0,0,0,1);
-    -webkit-background-clip: text;
-    -webkit-background-size: 200% 100%;
-    font-size: 1000%;
-    text-align: center;
-  }
-  100% {
-    background: rgba(0,0,0,1);
-    -webkit-text-fill-color: rgba(0,0,0,1);
-    -webkit-background-clip: text;
-    -webkit-background-size: 200% 100%;
-    font-size: 4em;
-    text-align: center;
-  }
-}
-
-@keyframes flowCss {
-  0% {
-  /* 移动背景位置 */
-    background-position: 0 0;
-  }
-  100% {
-    background-position: -400% 0;
-  }
-}
-
-.showing *:hover {
-  -webkit-animation: flowCss 4s infinite linear;
+@keyframes p-resultHiding-frames {
+  0% {font-size: 10rem;letter-spacing: 1em;transform: translateZ(300px);filter: blur(12px);opacity: 0;}
+  100% {font-size: 5rem;transform: translateZ(12px);filter: blur(0);opacity: 1;}
 }

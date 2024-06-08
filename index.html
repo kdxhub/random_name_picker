@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- This is an open-source -->
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
@@ -19,8 +20,9 @@
 	<link rel="preload" href="./res/result-bgm.ogg" as="audio" type="audio/ogg" />
 	<link rel="preload" href="./res/ring.ogg" as="audio" type="audio/ogg" />
 	</head>
-<body><div class="generalFrame" id="generalFrame">
-  <div class="main" id="main"><!-- 主页面 -->
+<body onselectstart="noSelect()"><div class="generalFrame" id="generalFrame">
+  <div id="noscript" style="text-align: center;"><b>E07:由于您似乎禁用了Javascript或者出于其它原因，页面无法正常加载。</b></div><!-- 未启用js或者js加载失败的提示 -->
+  <div class="mainDisabled" id="main"><!-- 主页面 -->
     <div class="center">
       <h2 class="mainTitle">Random Name Picker</h2>
       <h6 class="subTitle">Pro Max Ultra Utterly Big Hyper Large Plus +</h6>
@@ -30,6 +32,7 @@
       <button id="start" onclick="start()" class="sr"><p class="black" id="startButtonTips" style="position:relative;">跃迁10次</p></button>
       <footer class="site-footer">
         <span class="site-footer-credits">
+          <br>
 	  	  	<small><p>kdxiaoyi (C) 2024</p></small>
           <small><p>All Copyright Reserved.</p></small>
           <small><p>↓ 开源项目地址 ↓</p>
@@ -39,6 +42,11 @@
     </div>
   </div>
   <div class="cgFrameDisabled" id="cgFrame"><!-- 抽卡动画 -->
+    <header class="srheader"><!-- 借用下result里面的标题（懒） -->
+      <div class="srreturn">
+        <span class="srreturnBtn" id="skipBtn" onclick="cgEnded()"></span>
+      </div>
+    </header>
     <video id="cg" class="cg" disablepictureinpicture=true preload="auto">
       <source src="./res/cg3.mp4" type="video/mp4" />
       <source src="./res/cg4.mp4" type="video/mp4" />
@@ -47,12 +55,15 @@
     </video>
   </div>
   <div class="resultDisabled" id="result"><!-- 结果展示 -->
-    <div class="srtitle">
-      <i class="wishingIcon" id="wishingIcon">　.</i><p>跃迁</p><p>结果展示</p>
-    </div>
-    <div class="hiding" id="nowNameDiv">
-      <p id="nowName" class="showing">E02结果生成错误：未知错误。</p>
-    </div>
+    <header class="srheader">
+      <div class="srtitle">
+        <i class="wishingIcon" id="wishingIcon"></i><p class="srtitleP1">跃迁</p><p class="srtitleP2">结果展示</p>
+      </div>
+      <div class="srreturn">
+        <span class="srreturnBtn" id="totalBtn" onclick="total()"></span>
+      </div>
+    </header>
+    <p id="nowName" class="p-showing">E02结果生成错误：未知错误。</p>
     <audio id="resultBgm" preload="auto" style="display: none;" loop><source src="./res/result-bgm.ogg" type="audio/ogg" />E03.未能加载背景音乐，请检查你的浏览器版本</audio>
     <audio id="ring" preload="auto" style="display: none;"><source src="./res/ring.ogg" type="audio/ogg" />E03.未能加载提示音乐，请检查你的浏览器版本</audio>
   </div>
@@ -61,5 +72,6 @@
   </div></div>
   <script id="listJs" type="text/javascript" language="JavaScript" src=""></script>
 	<script type="text/javascript" language="JavaScript" src="./js.js"></script>
+  <!-- Copyright (C) 2024 kdxiaoyi, all right reserved. -->
 </body>
 </html>
