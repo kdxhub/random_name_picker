@@ -34,3 +34,4 @@ RNP设计之初就没有考虑展示时的背景图，因为本人认为要收�
 * 汉仪旗黑字体（75W与65J）
 * 《崩坏：星穹铁道》中部分游戏素材
 * 4399抽卡模拟器（部分布局素材）
+* 光锥生成（[blacktunes/sr-light-cone](https://github.com/blacktunes/sr-light-cone)）

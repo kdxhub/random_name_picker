@@ -5,16 +5,18 @@
   <meta charset="UTF-8">
   <title>Random Name Picker - kdxiaoyi</title>
 	<link rel="icon" href="./favicon.ico"></link>
+	<link rel="preload" href="./js.js" as="script" />
+	<link rel="preload" href="./list.js" as="script" />
+	<link rel="preload" href="./res/background.png" as="image" />
+	<link rel="preload" href="./res/objects.png" as="image" />
+  <link rel="preload" href="./res/starLevel.png" as="image" />
+  <link rel="preload" href="./res/labelChar.jpg" as="image" />
 	<link rel="stylesheet" href="./css/style.css" />
 	<link rel="stylesheet" href="./css/main.css" />
 	<link rel="stylesheet" href="./css/cgFrame.css" />
 	<link rel="stylesheet" href="./css/result.css" />
 	<link rel="stylesheet" href="./css/total.css" />
-	<!-- 资源预加载便于使用 -->
-	<link rel="preload" href="./js.js" as="script" />
-	<link rel="preload" href="./res/background.png" as="image" />
-	<link rel="preload" href="./res/objects.png" as="image" />
-	<link rel="preload" href="./res/cg3.mp4" as="video" type="video/mp4" />
+  <link rel="preload" href="./res/cg3.mp4" as="video" type="video/mp4" />
 	<link rel="preload" href="./res/cg4.mp4" as="video" type="video/mp4" />
 	<link rel="preload" href="./res/cg5.mp4" as="video" type="video/mp4" />
 	<link rel="preload" href="./res/result-bgm.ogg" as="audio" type="audio/ogg" />
@@ -63,12 +65,143 @@
         <span class="srreturnBtn" id="totalBtn" onclick="total()"></span>
       </div>
     </header>
-    <p id="nowName" class="p-showing">E02结果生成错误：未知错误。</p>
+    <p id="nowName" class="p-showing">E02.结果生成错误：未知错误。</p>
+    <img id="label" class="label" src="./res/labelChar.jpg" />
+    <div id="starDiv" class="starLevel">
+      <img class="starLevel-img" src="./res/starLevel.png" />
+      <img class="starLevel-img" src="./res/starLevel.png" />
+      <img class="starLevel-img" src="./res/starLevel.png" />
+      <img id="four" class="starLevel-img" src="./res/starLevel.png" />
+      <img id="five" class="starLevel-img" src="./res/starLevel.png" />
+    </div>
     <audio id="resultBgm" preload="auto" style="display: none;" loop><source src="./res/result-bgm.ogg" type="audio/ogg" />E03.未能加载背景音乐，请检查你的浏览器版本</audio>
     <audio id="ring" preload="auto" style="display: none;"><source src="./res/ring.ogg" type="audio/ogg" />E03.未能加载提示音乐，请检查你的浏览器版本</audio>
+    <div id="HighQuality-stars" id="star-bgEffect">
+      <div class="stars" style="left: 66%; top: 6%; transform: scale(0.498107); animation-delay: 2.39472s; animation-duration: 4s;"></div><div class="stars" style="left: 69%; top: 19%; transform: scale(0.997783); animation-delay: 1.19359s; animation-duration: 4s;"></div><div class="stars" style="left: 36%; top: 70%; transform: scale(0.754561); animation-delay: 0.147898s; animation-duration: 2s;"></div><div class="stars" style="left: 45%; top: 84%; transform: scale(0.688603); animation-delay: 0.792689s; animation-duration: 3s;"></div><div class="stars" style="left: 73%; top: 89%; transform: scale(0.813369); animation-delay: 1.54381s; animation-duration: 3s;"></div><div class="stars" style="left: 50%; top: 18%; transform: scale(0.762651); animation-delay: 1.91573s; animation-duration: 2s;"></div><div class="stars" style="left: 32%; top: 13%; transform: scale(0.196293); animation-delay: 1.05553s; animation-duration: 4s;"></div><div class="stars" style="left: 66%; top: 31%; transform: scale(0.366149); animation-delay: 0.991148s; animation-duration: 4s;"></div><div class="stars" style="left: 8%; top: 40%; transform: scale(0.684247); animation-delay: 0.234911s; animation-duration: 2s;"></div><div class="stars" style="left: 29%; top: 10%; transform: scale(0.217483); animation-delay: 1.5982s; animation-duration: 3s;"></div><div class="stars" style="left: 15%; top: 63%; transform: scale(0.647325); animation-delay: 2.98266s; animation-duration: 3s;"></div><div class="stars" style="left: 9%; top: 27%; transform: scale(0.396499); animation-delay: 0.396184s; animation-duration: 3s;"></div><div class="stars" style="left: 64%; top: 21%; transform: scale(0.274084); animation-delay: 1.28699s; animation-duration: 5s;"></div><div class="stars" style="left: 90%; top: 51%; transform: scale(0.993933); animation-delay: 1.97127s; animation-duration: 2s;"></div><div class="stars" style="left: 47%; top: 13%; transform: scale(0.113908); animation-delay: 1.51619s; animation-duration: 5s;"></div><div class="stars" style="left: 20%; top: 41%; transform: scale(0.216145); animation-delay: 0.295703s; animation-duration: 4s;"></div><div class="stars" style="left: 67%; top: 6%; transform: scale(0.0393805); animation-delay: 2.27954s; animation-duration: 5s;"></div><div class="stars" style="left: 10%; top: 10%; transform: scale(0.512163); animation-delay: 1.78926s; animation-duration: 2s;"></div><div class="stars" style="left: 52%; top: 64%; transform: scale(0.461109); animation-delay: 0.2239s; animation-duration: 2s;"></div><div class="stars" style="left: 79%; top: 27%; transform: scale(0.33843); animation-delay: 1.22111s; animation-duration: 4s;"></div><div class="stars" style="left: 10%; top: 34%; transform: scale(0.120192); animation-delay: 2.13885s; animation-duration: 4s;"></div><div class="stars" style="left: 47%; top: 8%; transform: scale(0.530042); animation-delay: 1.71732s; animation-duration: 4s;"></div><div class="stars" style="left: 49%; top: 59%; transform: scale(0.350568); animation-delay: 2.37014s; animation-duration: 4s;"></div><div class="stars" style="left: 89%; top: 70%; transform: scale(0.0341581); animation-delay: 0.87131s; animation-duration: 2s;"></div><div class="stars" style="left: 28%; top: 34%; transform: scale(0.795283); animation-delay: 0.354457s; animation-duration: 5s;"></div><div class="stars" style="left: 15%; top: 29%; transform: scale(0.27011); animation-delay: 0.57354s; animation-duration: 4s;"></div><div class="stars" style="left: 34%; top: 12%; transform: scale(0.519339); animation-delay: 2.96998s; animation-duration: 2s;"></div><div class="stars" style="left: 80%; top: 89%; transform: scale(0.310173); animation-delay: 1.5604s; animation-duration: 5s;"></div><div class="stars" style="left: 88%; top: 14%; transform: scale(0.179816); animation-delay: 0.064303s; animation-duration: 4s;"></div><div class="stars" style="left: 68%; top: 36%; transform: scale(0.414152); animation-delay: 0.0592819s; animation-duration: 3s;"></div>
+    </div>
+    <div id="HighQuality-triangle" id="triangle-bgEffect">
+      <div class="triangle" style="left: 39%; top: 71%; transform: scale(1.1) rotate(21deg);"><div style="animation-delay: 0.770035s; animation-duration: 7s;"></div></div><div class="triangle" style="left: 65%; top: 89%; transform: scale(0.82) rotate(45deg);"><div style="animation-delay: 0.530812s; animation-duration: 10s;"></div></div><div class="triangle" style="left: 36%; top: 27%; transform: scale(0.75) rotate(23deg);"><div style="animation-delay: 0.159953s; animation-duration: 10s;"></div></div><div class="triangle" style="left: 14%; top: 77%; transform: scale(1.23) rotate(19deg);"><div style="animation-delay: 0.567217s; animation-duration: 7s;"></div></div><div class="triangle" style="left: 16%; top: 61%; transform: scale(1.21) rotate(41deg);"><div style="animation-delay: 1.64842s; animation-duration: 9s;"></div></div><div class="triangle" style="left: 71%; top: 61%; transform: scale(0.66) rotate(13deg);"><div style="animation-delay: 1.34681s; animation-duration: 8s;"></div></div><div class="triangle" style="left: 86%; top: 25%; transform: scale(0.5) rotate(9deg);"><div style="animation-delay: 1.16108s; animation-duration: 7s;"></div></div>
+    </div>
+    <div class="mask"></div>
+    <div id="HighQuality-mask_shining" class="mask-shining">
+      <!-- 下方闪烁小白条 -->
+      <div class="mask-shining-subBlock" style="left: 21%; width: 72px; height: 59%; animation-duration: 7s; animation-delay: 1.8s;"></div>
+      <div class="mask-shining-subBlock" style="left: 55%; width: 50px; height: 54%; animation-duration: 4s; animation-delay: 2.5s;"></div>
+      <div class="mask-shining-subBlock" style="left: 61%; width: 89px; height: 55%; animation-duration: 7s; animation-delay: 2.8s;"></div>
+      <div class="mask-shining-subBlock" style="left: 94%; width: 50px; height: 60%; animation-duration: 8s; animation-delay: 3s;"></div>
+    </div>
   </div>
   <div class="totalDisabled" id="total"><!-- 结果总和 -->
-    
+    <header class="srheader"><!-- 借用下result里面的标题（懒） -->
+      <div class="srtitle">
+        <i class="wishingIcon" id="wishingIcon"></i><p class="srtitleP1">跃迁</p><p class="srtitleP2">结果展示</p>
+      </div>
+      <div class="srreturn">
+        <span class="srreturnBtn" id="totalBtn" onclick="total_back()"></span>
+      </div>
+    </header>
+    <ul class="finnalDiv">
+      <li id="f1" class="finnal-subDiv- heads-up">
+        <p class="finnal-name-p" id="fp1"></p>
+        <div id="finnal-starDiv" class="finnal-starLevel">
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffour1" class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffive1" class="finnal-starLevel-img" src="./res/starLevel.png" />
+        </div>
+      </li>
+      <li id="f2" class="finnal-subDiv- down">
+        <p class="finnal-name-p" id="fp2"></p>
+        <div id="finnal-starDiv" class="finnal-starLevel">
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffour2" class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffive2" class="finnal-starLevel-img" src="./res/starLevel.png" />
+        </div>
+      </li>
+      <li id="f3" class="finnal-subDiv-">
+        <p class="finnal-name-p" id="fp3"></p>
+        <div id="finnal-starDiv" class="finnal-starLevel">
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffour3" class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffive3" class="finnal-starLevel-img" src="./res/starLevel.png" />
+        </div>
+      </li><br>
+      <li id="f4" class="finnal-subDiv2- up">
+        <p class="finnal-name-p" id="fp4"></p>
+        <div id="finnal-starDiv" class="finnal-starLevel">
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffour4" class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffive4" class="finnal-starLevel-img" src="./res/starLevel.png" />
+        </div>
+      </li>
+      <li id="f5" class="finnal-subDiv2-">
+        <p class="finnal-name-p" id="fp5"></p>
+        <div id="finnal-starDiv" class="finnal-starLevel">
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffour5" class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffive5" class="finnal-starLevel-img" src="./res/starLevel.png" />
+        </div>
+      </li>
+      <li id="f6" class="finnal-subDiv2- down">
+        <p class="finnal-name-p" id="fp6"></p>
+        <div id="finnal-starDiv" class="finnal-starLevel">
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffour6" class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffive6" class="finnal-starLevel-img" src="./res/starLevel.png" />
+        </div>
+      </li>
+      <li id="f7" class="finnal-subDiv2-">
+        <p class="finnal-name-p" id="fp7"></p>
+        <div id="finnal-starDiv" class="finnal-starLevel">
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffour7" class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffive7" class="finnal-starLevel-img" src="./res/starLevel.png" />
+        </div>
+      </li><br>
+      <li id="f8" class="finnal-subDiv- heads-up">
+        <p class="finnal-name-p" id="fp8"></p>
+        <div id="finnal-starDiv" class="finnal-starLevel">
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffour8" class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffive8" class="finnal-starLevel-img" src="./res/starLevel.png" />
+        </div>
+      </li>
+      <li id="f9" class="finnal-subDiv- down">
+        <p class="finnal-name-p" id="fp9"></p>
+        <div id="finnal-starDiv" class="finnal-starLevel">
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffour9" class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffive9" class="finnal-starLevel-img" src="./res/starLevel.png" />
+        </div>
+      </li>
+      <li id="f10" class="finnal-subDiv-">
+        <p class="finnal-name-p" id="fp10"></p>
+        <div id="finnal-starDiv" class="finnal-starLevel">
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffour10" class="finnal-starLevel-img" src="./res/starLevel.png" />
+          <img id="Ffive10" class="finnal-starLevel-img" src="./res/starLevel.png" />
+        </div>
+      </li>
+    </ul>
   </div></div>
   <script id="listJs" type="text/javascript" language="JavaScript" src=""></script>
 	<script type="text/javascript" language="JavaScript" src="./js.js"></script>

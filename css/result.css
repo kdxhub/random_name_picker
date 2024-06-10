@@ -15,6 +15,97 @@
   overflow: hidden;
 }
 
+/* 下方白色渐变遮罩层 */
+.mask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(215, 225, 230, .7), rgba(90, 100, 135, .9) 45%, transparent);
+}
+.mask-shining {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  filter: drop-shadow(0 0px 10px #fff);
+  pointer-events: none;
+  --box-background-color: #d8d8d8;
+  --text-highlight-color: #fccf73;
+}
+.mask-shining-subBlock {
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(255, 255, 255, .05) calc(100% - 100px), transparent);
+  opacity: 0;
+  animation: shining-block linear infinite;
+}
+@keyframes shining-block {
+  0% {opacity: 0;transform: scaleX(1);}
+  50% {opacity: 1;transform: scaleX(1);}
+  65% {opacity: 0;transform: scaleX(.5);}
+  100% {opacity: 0;transform: scaleX(1);}
+}
+
+/* 斗转星移的背景效果 */
+.star-bgEffect {
+  animation: star-bgEffect-frame 720s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-bottom: 100%;
+  width: 100%;
+  height: 0;
+  filter: drop-shadow(0 0px 10px #fff);
+  pointer-events: none;
+}
+@keyframes star-bgEffect-frame {
+  0% {transform: translate(-50%, -50%) rotate(0);}
+  100% {transform: translate(-50%, -50%) rotate(360deg);}
+}
+.stars {
+  left: 66%;
+  top: 6%;
+  transform: scale(0.498107);
+  animation-delay: 2.39472s;
+  animation-duration: 4s;
+  position: absolute;
+  width: 0.51%;
+  height: 0.51%;
+  border-radius: 50%;
+  background-color: #ffcf70;
+  opacity: 0;
+  animation: stars-frame linear infinite alternate;
+}
+@keyframes stars-frame {
+  0% {opacity: 0;}
+  50% {opacity: .7;}
+  100% {opacity: 0;}
+}
+.triangle-bgEffect {
+  animation: triangle-bgEffect-frame 360s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-bottom: 100%;
+  width: 100%;
+  height: 0;
+  filter: drop-shadow(0 0px 10px #fff);
+  pointer-events: none;
+}
+@keyframes triangle-bgEffect-frame {
+  0% {transform: translate(-50%, -50%) rotate(0);}
+  100% {transform: translate(-50%, -50%) rotate(360deg);}
+}
+.triangle {
+  left: 39%;
+  top: 71%;
+  transform: scale(1.1) rotate(21deg);
+  position: absolute;
+}
+
 /* 左上角图标栏 */
 .srheader {
   position: absolute;
@@ -86,13 +177,13 @@
   line-height: .5rem;
   color: #efda99;
   margin-bottom: .1rem;
-  width: 10vw;
+  width: 20vw;
 }
 .srtitleP2 {
   font-size: .6rem;
   line-height: .6rem;
   color: #fff;
-  width: 10vw;
+  width: 20vw;
 }
 
 /* 返回按钮 */
@@ -103,7 +194,7 @@
     height: 100%;
   }
   .srreturnBtn{
-    right: calc(( 100vw - ( 100vh / 0.5625 ) ) / 2 + 2vw);
+    right: calc(( 100vw - ( 100vh / 0.5625 ) ) + 1vw);
   }
 } 
 @media screen and (height >= calc(100vw * 0.5625)) {/* 否则占满宽度 */
@@ -154,10 +245,83 @@
   display: table-cell;
   vertical-align: middle;
   color:#000;
-  -webkit-animation: p-resultHiding-frames 1s 1 linear;
-  animation: p-resultHiding-frames 1s 1 linear;
+  white-space: nowrap;
+  -webkit-text-stroke: #ece7e7e8 .6rem;
+    outline: #fff solid 3rem;
+    -webkit-animation: p-resultHiding-frames 1s 1 linear;
+    animation: p-resultHiding-frames 1s 1 linear;
 }
 @keyframes p-resultHiding-frames {
-  0% {font-size: 10rem;letter-spacing: 1em;transform: translateZ(300px);filter: blur(12px);opacity: 0;}
+  0% {font-size: 7.5rem;letter-spacing: 1em;transform: translateZ(300px);filter: blur(12px);opacity: 0;}
   100% {font-size: 5rem;transform: translateZ(12px);filter: blur(0);opacity: 1;}
+}
+
+/* 星级展示 */
+.starLevel {
+  position: absolute;
+  top: 62%;
+  left: 35%;
+  height: 5%;
+  border: hidden transparent;
+}
+.starLevel-end {
+  position: absolute;
+  top: 62%;
+  left: 27%;
+  height: 5%;
+  border: hidden transparent;
+  opacity: 0.9;
+}
+.starLevel-frame {
+  position: absolute;
+  top: 62%;
+  height: 5%;
+  border: hidden transparent;
+    animation: starLevel-div-comgingIn-frame 2s 1 linear;
+}
+@keyframes starLevel-div-comgingIn-frame {
+  0% {left: 35%;opacity: 0;}
+  30% {left: 32%;opacity: 0.9;}
+  80% {left: 30%;opacity: 0.9;}
+  87% {left: 28%;opacity: 0.9;}
+  90% {left: 27%;opacity: 0.9;}
+  95% {left: 27.4%;opacity: 0.9;}
+  100% {left: 27%;opacity: 0.9;}
+}
+.starLevel-img {
+  height: 100%;
+}
+
+/* 标签展示 */
+.label {
+  position: absolute;
+  top: 35%;
+  left: 70%;
+  height: 6%;
+  border: hidden transparent;
+  opacity: 0;
+}
+.label-end {
+  position: absolute;
+  top: 35%;
+  left: 60%;
+  height: 6%;
+  border: hidden transparent;
+  opacity: 0.8;
+}
+.label-frame {
+  position: absolute;
+  top: 35%;
+  height: 5%;
+  border: hidden transparent;
+    animation: label-comgingIn-frame 2s 1 linear;
+}
+@keyframes label-comgingIn-frame {
+  0% {left: 70%;opacity:0;}
+  30% {left: 68.5%;opacity:0.8;}
+  80% {left: 65.5%;opacity:0.8;}
+  87% {left: 63.5%;opacity:0.8;}
+  90% {left: 61.4%;opacity:0.8;}
+  95% {left: 60.5%;opacity:0.8;}
+  100% {left: 60%;opacity:0.8;}
 }
