@@ -13,6 +13,11 @@ title: "自定义素材"
 |`res/ring.ogg`|下一个结果时的提示音效<br>**必须为ogg格式**|
 |`res/objects.png`|按钮等图标的位图文件|
 |`res/cg*.mp4`|抽卡CG动画<br>`*`是几就是出了几星<br>**必须为mp4格式**|
+|`res/label.png`|光锥标签（未使用）|
+|`res/labelChar.jpg`|角色标签|
+|`res/new.webp`|「新」这个字（未使用）|
+|`res/starLevel.svg`|星级单个标识（未使用）|
+|`res/starLevel.png`|星级单个标识|
 
 另有一些资源是写在代码里面的
 

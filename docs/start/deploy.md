@@ -20,3 +20,8 @@ title: "标准私有化部署"
 2. 点击上方设置按钮 ![Settings](https://s21.ax1x.com/2024/06/06/pkYsQr8.jpg)
 3. 在Pages设置中选择从`master`分支构建Pages
 ![Pages设置](https://s21.ax1x.com/2024/06/06/pkYsUx0.jpg)
+
+## 静态托管加速
+直接使用Github.io可能会导致访问很慢
+
+请自行查阅如何部署到更快的Vercel/热铁盒网页托管等托管网站。
