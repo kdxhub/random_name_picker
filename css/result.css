@@ -246,14 +246,13 @@
   vertical-align: middle;
   color:#000;
   white-space: nowrap;
-  -webkit-text-stroke: #ece7e7e8 .6rem;
     outline: #fff solid 3rem;
     -webkit-animation: p-resultHiding-frames 1s 1 linear;
     animation: p-resultHiding-frames 1s 1 linear;
 }
 @keyframes p-resultHiding-frames {
-  0% {font-size: 7.5rem;letter-spacing: 1em;transform: translateZ(300px);filter: blur(12px);opacity: 0;}
-  100% {font-size: 5rem;transform: translateZ(12px);filter: blur(0);opacity: 1;}
+  0% {font-size: 7.5rem;letter-spacing: 1em;transform: translateZ(300px);filter: blur(12px);opacity: 0;-webkit-text-stroke: #ece7e7e8 .6rem;}
+  100% {font-size: 5rem;transform: translateZ(12px);filter: blur(0);opacity: 1;-webkit-text-stroke: #ece7e7e8 .1rem;}
 }
 
 /* 星级展示 */

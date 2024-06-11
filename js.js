@@ -1,6 +1,4 @@
 function range(min,max) {return Math.round(Math.random()*(max-min)+min);};function getQueryString(name) {let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");let r = window.location.search.substr(1).match(reg);if (r != null) {return unescape(r[2]);};return null;};function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms));};function removeElement(ElementId) {document.getElementById(ElementId).remove();};
-function hide(id) {document.getElementById(id).className=(document.getElementById(id).className+'Disabled')};
-function unhide(id) {document.getElementById(id).className=id};
 function r() {start();cgEnded();};// debug:快速生成结果并展示
 function lowUsage() {
   console.log('低特效已启用');
@@ -27,13 +25,15 @@ function start() {//「祈愿10次」按钮点击
   if ( outputStar.indexOf(4) != -1 ) {document.getElementById("cg").src = './res/cg4.mp4';console.log("存在星级4");};
   if ( outputStar.indexOf(5) != -1 ) {document.getElementById("cg").src = './res/cg5.mp4';console.log("存在星级5");};
   document.getElementById("cg").loop = false;
-  hide('main');unhide('cgFrame');
+  document.getElementById('main').className='mainDisabled';
+  document.getElementById('cgFrame').className='cgFrame';
   document.getElementById("cg").play();
 };
 function cgEnded() {//cg播放完成回调
   document.getElementById("cg").pause();
   next();
-  hide('cgFrame');unhide('result');
+  document.getElementById('cgFrame').className='cgFrameDisabled';
+  document.getElementById('result').className='result';
   document.getElementById('result').setAttribute("onclick", "next()");
   //播放背景音乐（自动进度归0）
   document.getElementById('resultBgm').currentTime = 0;
@@ -86,11 +86,14 @@ function total() {//抽卡结果顺序展示完毕，展示全部
     if (outputStar[i-1] == 5) {f.setAttribute("style",fiveOutline);fs4.setAttribute("style","/**/");fs5.setAttribute("style","/**/");};
     if ( output.length == 11 ) {break;};
   };
-  hide('result');unhide('total');
+  document.getElementById('result').className='resultDisabled';
+  document.getElementById('total').className='total';
 };
 function total_back() {//返回抽卡界面
-  hide('total');unhide('main');
+  document.getElementById('main').className='main';
+  document.getElementById('total').className='totalDisabled';
   document.getElementById('resultBgm').pause();
+  location.reload();
 };
 
 //定义部分常量
