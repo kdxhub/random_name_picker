@@ -20,15 +20,15 @@
     <p>请参阅我们的<a href="https://kdxhub.github.io/random_name_picker/docs/">教程</a>以应用配置文件。</p><br>
     <p>左侧：输入姓名表<small>(每行一个)</small></p>
     <p>右侧：输入对应星级<small>(支持3/4/5星，超出取最近，默认3)</small></p><br>
-    <button style="display:none" onclick="read()"><p class="black" id="spawnBtnP" style="position:relative;">读取配置文件</p></button>
     <button onclick="spawn()"><p class="black" id="spawnBtnP" style="position:relative;">生成配置文件</p></button>
     <p id="errorTip" style="background:#f47a7aae;margin: .3rem 0 0 0;">× 模块spawn()加载失败</p>
-    <p id="doneTip" style="display:none;">? 已生成配置文件，替换list.js即可生效</p>
-    <br><small><p id="state"></p></small><br>
+    <p id="doneTip" style="display:none;">✓ 已生成配置文件，替换list.js即可生效</p>
+    <small><p><a href="javascript:void(0);" onclick="clearT()">清空编辑区</a></p></small>
+    <small><p id="state"></p></small><br>
   </div>
   <div class="outputsArea center">
-    <textarea class="names" id="names" spellcheck="true" warp="off" placeholder="输入姓名表…" autofocus></textarea>
     <textarea class="stars" id="stars" spellcheck="false" warp="off" placeholder="输入对应星级…" ></textarea>
+    <textarea class="names" id="names" spellcheck="true" warp="off" placeholder="输入姓名表…" autofocus></textarea>
     <br><textarea class="outputs" id="output" spellcheck="false" warp="off" placeholder="输出结果……" readonly>等待输出……</textarea>
   </div>
   <footer class="site-footer center noSelect">
@@ -40,16 +40,35 @@
       <a href="https://github.com/kdxhub/random_name_picker">kdxhub/random_name_picker</a></small>
     </span>
   </footer>
+  <div data-Notice="仅仅用于防止list.js加载失败的占位元素" style='display:none;'>
+    <p id="main-loadedList"></p>
+    <button id='start'></button>
+    <p id="startButtonTips"></p>
+    <p id="startGuidancePrompt"></p>
+  </div>
 <!-- Copyright (C) 2024 kdxiaoyi, all right reserved. -->
 <!-- https://space.bilibili.com/1987247870 -->
+<script id="listJs" type="text/javascript" language="JavaScript" src=""></script>
 <script type="text/javascript">
+  //模块:文本行操作
+String.prototype.lines = function() { return this.split(/\r*\n/); };String.prototype.lineCount = function() { return this.lines().length; };
+//定义变量
+const namesE=document.getElementById('names');
+const starsE=document.getElementById('stars');
+const outE=document.getElementById('output');
+const state=document.getElementById("state");
+var names=namesE.value;
+var stars=namesE.value;
 function getQueryString(name) {let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");let r = window.location.search.substr(1).match(reg);if (r != null) {return unescape(r[2]);};return null;};
 function refreshResult() {//动态刷新状态栏
   document.getElementById("doneTip").setAttribute("style","display:none;");
   document.getElementById("errorTip").setAttribute("style","display:none;");
   var names=namesE.value;
   var stars=starsE.value;
-  if (names.lineCount() == stars.lineCount()) {state.innerHTML="共计姓名"+names.lineCount()+"个 ＝ 共计星级"+stars.lineCount()+"个"} else {state.innerHTML="共计姓名"+names.lineCount()+"个 ≠ 共计星级"+stars.lineCount()+"个"};
+  if (names.lineCount() == stars.lineCount()) {state.innerHTML="共计姓名"+names.lineCount()+"个 ＝ 共计星级"+stars.lineCount()+"个"} 
+  else {state.innerHTML="共计姓名"+names.lineCount()+"个 ≠ 共计星级"+stars.lineCount()+"个"};
+  namesE.style.height = "inherit";namesE.style.height = `${namesE.scrollHeight}px`;
+  starsE.style.height = "inherit";starsE.style.height = `${namesE.scrollHeight}px`;
 };
 function spawn() {//生成配置文件
   outE.value="";refreshResult();
@@ -77,24 +96,41 @@ function spawn() {//生成配置文件
   hidden_a.setAttribute('href', 'data:text/plain;base64,'+window.btoa(unescape(encodeURIComponent(outE.value))));
   hidden_a.setAttribute('download', "list.js"); 
   document.body.appendChild(hidden_a); hidden_a.click();
-  hidden_a.remove();return;
+  hidden_a.remove();
   document.getElementById("doneTip").setAttribute("style","background:#98f6b798;margin: .3rem 0 0 0;");return;
 };
-function read() {//读取配置文件
-  alert("尚未实现，摆烂ing");
+function clearT() {//清空区域
+  if (confirm('确认要清空编辑区吗？\n该操作无法撤销')) {namesE.value="";starsE.value="";};refreshResult();return;
 };
-String.prototype.lines = function() { return this.split(/\r*\n/); }
-String.prototype.lineCount = function() { return this.lines().length; }
-const namesE=document.getElementById('names');
-const starsE=document.getElementById('stars');
-const outE=document.getElementById('output');
-const state=document.getElementById("state");
-var names=namesE.value;
-var stars=namesE.value;
-namesE.addEventListener("input", function() {this.style.height = "inherit";this.style.height = `${this.scrollHeight}px`;refreshResult();});
-starsE.addEventListener("input", function() {this.style.height = "inherit";this.style.height = `${this.scrollHeight}px`;refreshResult();});
+//textarea自适应高度
+namesE.addEventListener("input",function(){refreshResult();});
+starsE.addEventListener("input",function(){refreshResult();});
 outE.addEventListener("select", function() {this.style.height = "inherit";this.style.height = `${this.scrollHeight}px`;refreshResult();});
+//加载list.js
+function configLoaded() {//list.js加载完毕回调
+  namesE.value="";starsE.value="";
+  for (i=0;i< (name.length - 1);i++) {namesE.value += name[i]+"\n";};
+  for (i=0;i< (star.length - 1);i++) {starsE.value += star[i]+"\n";};
+  namesE.value += name[name.length - 1];
+  starsE.value += star[star.length - 1];
+  refreshResult();
+};
+var listJsElement = document.createElement("script");
+if (getQueryString('list') == null) {
+  listJsElement.setAttribute("type", "text/javascript");
+  listJsElement.setAttribute("src", './list.js');
+  document.body.appendChild(listJsElement);
+  console.log('未找到三方list.js');
+} else {
+  listJsElement.setAttribute("type", "text/javascript");
+  listJsElement.setAttribute("src", getQueryString('list'));
+  document.body.appendChild(listJsElement);
+  document.getElementById('listJs').setAttribute("src", getQueryString('list'));
+  console.log('找到三方list.js  src=' + getQueryString('list'));
+};
+//debug cmdLine
 if (getQueryString('debug') != 1) {outE.setAttribute('style',"display:none;")};
+//js加载成功则关闭提示
 document.getElementById("errorTip").setAttribute("style","display:none;");
 document.getElementById("noscript").setAttribute("style","display:none;");
 </script>

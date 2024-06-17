@@ -164,14 +164,23 @@ function total_back() {//返回抽卡界面
   document.getElementById('resultBgm').pause();
   location.reload();
 };
-function resultSingleReturn() {
+function resultSingleReturn() {//单抽返回主界面
   document.getElementById('main').className = 'main';
   document.getElementById('resultSingle').className = 'resultDisabled';
   document.getElementById('resultBgm').pause();
   location.reload();
 };
-function configLoaded() {
+function configLoaded() {//list.js加载完毕回调
   if (version <= CurrentVersion) { console.log('成功加载list.js  version=' + version + '  最高支持version=' + CurrentVersion); } else { console.log('list.js加载成功，但是版本过高  version=' + version + '  最高支持version=' + CurrentVersion); };
+};
+function configSpawn() {//跳转到config-spawn.html
+  var hidden_a = document.createElement('a'); 
+  // DIY_config-spawn.html地址修改 ↓
+  var csurl="./config-spawn.html";
+  if (ThirdList==true) {hidden_a.setAttribute('href', csurl+'?list='+getQueryString("list"));} else {hidden_a.setAttribute('href', csurl);};
+  hidden_a.setAttribute('target', "_blank"); 
+  document.body.appendChild(hidden_a); hidden_a.click();
+  hidden_a.remove();return;
 };
 
 //定义部分常量
@@ -184,6 +193,7 @@ document.getElementById("cg").addEventListener("ended", (event) => { cgEnded(); 
 //背景音乐单曲循环（Event方法）（事实上loop和Event同时生效了）
 document.getElementById("resultBgm").addEventListener("ended", (event) => { document.getElementById('resultBgm').currentTime = 0; document.getElementById('resultBgm').play(); });
 //加载list.js
+var ThirdList=false;
 if (getQueryString('list') == null) {
   let listJsElement = document.createElement("script");
   listJsElement.setAttribute("type", "text/javascript");
@@ -196,7 +206,7 @@ if (getQueryString('list') == null) {
   listJsElement.setAttribute("src", getQueryString('list'));
   document.body.appendChild(listJsElement);
   document.getElementById('listJs').setAttribute("src", getQueryString('list'));
-  console.log('找到三方list.js  src=' + getQueryString('list'));
+  console.log('找到三方list.js  src=' + getQueryString('list'));var ThirdList=true;
 };
 // 禁止选择文本（本来可以换更加隐蔽的写法，但是尊重下用反防止复制插件的人）
 function noSelect() { return false; };
