@@ -15,6 +15,8 @@ title: "标准私有化部署"
 3. 点击`list.js`，根据注释修改对应点名表与星级 （**必须使用英文标点**）
 4. 保存并提交这个更改
 
+> 您也可以使用[list.js生成工具](//kdxhub.github.io/random_name_picker/config-spawn.html)来可视化生成配置文件。
+
 ## 开启Pages
 1. 转到您Fork后的仓库
 2. 点击上方设置按钮 ![Settings](https://s21.ax1x.com/2024/06/06/pkYsQr8.jpg)

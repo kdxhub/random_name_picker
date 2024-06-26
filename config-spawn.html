@@ -67,8 +67,9 @@ function refreshResult() {//动态刷新状态栏
   var stars=starsE.value;
   if (names.lineCount() == stars.lineCount()) {state.innerHTML="共计姓名"+names.lineCount()+"个 ＝ 共计星级"+stars.lineCount()+"个"} 
   else {state.innerHTML="共计姓名"+names.lineCount()+"个 ≠ 共计星级"+stars.lineCount()+"个"};
-  namesE.style.height = "inherit";namesE.style.height = `${namesE.scrollHeight}px`;
-  starsE.style.height = "inherit";starsE.style.height = `${namesE.scrollHeight}px`;
+  namesE.style.height = "inherit";namesE.style.height = `${namesE.scrollHeight+10}px`;
+  starF= namesE.style.height / names.lineCount() ;
+  starsE.setAttribute("style",`font-weight: `+starF+`px;`+`height: ${namesE.style.height};`);
 };
 function spawn() {//生成配置文件
   outE.value="";refreshResult();
@@ -102,6 +103,8 @@ function spawn() {//生成配置文件
 function clearT() {//清空区域
   if (confirm('确认要清空编辑区吗？\n该操作无法撤销')) {namesE.value="";starsE.value="";};refreshResult();return;
 };
+//变量初始化
+var starF=1;
 //textarea自适应高度
 namesE.addEventListener("input",function(){refreshResult();});
 starsE.addEventListener("input",function(){refreshResult();});
@@ -133,6 +136,8 @@ if (getQueryString('debug') != 1) {outE.setAttribute('style',"display:none;")};
 //js加载成功则关闭提示
 document.getElementById("errorTip").setAttribute("style","display:none;");
 document.getElementById("noscript").setAttribute("style","display:none;");
+//强制刷新一次布局
+refreshResult();
 </script>
 </body>
 </html>

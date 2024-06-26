@@ -35,11 +35,13 @@ textarea {
   width: 70%;
   left: 0%;
   font-size: 1rem;
+  line-height: 1;
 }
 .stars {
   position: relative;
   width: 20%;
-  font-size: 1.1rem;
+  font-size: unset;
+  line-height: 1;
   margin: 0 0 0 0vw;
   text-align: right;
   overflow-x: hidden;

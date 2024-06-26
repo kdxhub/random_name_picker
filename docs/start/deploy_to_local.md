@@ -14,6 +14,8 @@ title: "部署到本地"
 4. 保存
 5. 使用浏览器打开`index.html`，检验您的成果
 
+> 您也可以使用[list.js生成工具](//kdxhub.github.io/random_name_picker/config-spawn.html)来可视化生成配置文件。
+
 ## 部署项目
 以班级多媒体为例：
 1. 使用便携式存储设备将编辑后的RNP**全部**复制到多媒体上

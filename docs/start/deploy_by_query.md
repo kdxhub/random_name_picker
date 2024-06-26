@@ -23,6 +23,8 @@ const star = [星级1, 星级=2, …];
 // …… more
 ```
 
+> 您也可以使用[list.js生成工具](//kdxhub.github.io/random_name_picker/config-spawn.html)来可视化生成配置文件。
+
 ## 上传并引用
 事实上，RNP支持引用外部list.js资源。<br>
 ```url
