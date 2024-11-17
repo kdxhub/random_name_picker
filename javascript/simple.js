@@ -17,6 +17,7 @@ nameHistory["ClearResetBtnStatusResetting"] = function() {
   nameHistory.resetProcessId=-1;
 };
 nameHistory["init"] = function() {
+  if (!getCookie("nameHistory")) {setCookie("nameHistory",",,,,,,,,,",365000);};
   nameHistory.list = getCookie("nameHistory")./*防止cookie被点炒饭*/replace(/[^\d,]+/,"").split(",",10);
   if ((!nameHistory.list) || (nameHistory.list.length != 10)) {
     setCookie("nameHistory",",,,,,,,,,",365000);
