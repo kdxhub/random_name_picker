@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+  <title>Random Name Picker [SIMPLE]</title>
+  <script>
+    const CurrentVersion = 2;
+    function configLoaded() {//list.js加载完毕回调
+      if (version <= CurrentVersion) { console.log('成功加载list.js  version=' + version + '  最高支持version=' + CurrentVersion); } else { console.log('list.js加载成功，但是版本过高  version=' + version + '  最高支持version=' + CurrentVersion); };
+    };
+  </script>
+  <script src="./javascript/sober@0.4.2.min.js"></script>
+	<link rel="icon" href="./favicon.ico"></link>
+	<link rel="stylesheet" href="./res/DIN/font.css" />
+	<link rel="stylesheet" href="./res/hanyi/font.css" />
+	<link rel="stylesheet" href="./res/MiSans/font.css" />
+  <link rel="stylesheet" href="./css/soberjs_ui.css">
+  <link rel="stylesheet" href="./css/simple.css">
+</head>
+<body>
+  <s-page theme="auto" class="page_root" id="page_root">
+    <s-appbar id="appbar">
+      <!--左侧菜单按钮-->
+      <s-icon-button id="sidebar_toggle_btn" type="outlined" slot="navigation">
+        <s-icon><img src="./res/svg/history.svg"></img></s-icon>
+      </s-icon-button>
+      <!--标题-->
+      <div slot="headline" id="UIt" style="">Random Name Picker [Simple]</div>
+      <!--右侧按钮-->
+        <div id="startButtonTips" style="display:none;"></div>
+        <div id="startGuidancePrompt" style="display:none;"></div>
+      <s-icon-button type="filled-tonal" id="start" slot="action">
+        <s-icon><img src="./res/svg/go.svg"></img></s-icon>
+        <s-badge  slot="badge">1</s-badge>
+      </s-icon-button>
+      <s-icon-button type="filled-tonal" id="start3" slot="action">
+        <s-icon><img src="./res/svg/go.svg"></img></s-icon>
+        <s-badge  slot="badge">3</s-badge>
+      </s-icon-button>
+      <s-icon-button type="filled-tonal" id="start5" slot="action">
+        <s-icon><img src="./res/svg/go.svg"></img></s-icon>
+        <s-badge  slot="badge">5</s-badge>
+      </s-icon-button>
+    </s-appbar>
+    <s-drawer id="sidebar" style="height: 731px;">
+      <div id="sidebar_left_parent" slot="start">
+        <s-scroll-view style="max-height:100%;">
+          <div id="sidebar_left" style="padding:5px 5px 5px 5px;">
+            <!--左侧边栏内容-->
+            <s-card type="" class="sidebar_head">
+              <p id="history_display" style="padding:0px 5px 5px 5px;"></p>
+              <s-chip id="resetHistoryBtn" type="outlined" clickable="true"><s-icon slot="start"><img src="./res/svg/reset.svg" /></s-icon>重置历史记录</s-chip>
+            </s-card>
+            <s-card type="" class="sidebar_head">
+              <div id="saying" class="selectable">
+                <p><center>This website is powered by <a href="https://github.com/kdxhub/random_name_picker">kdxiaoyi/random_name_picker</a>.
+                <br>Licensed as AGPL-3.0.
+                <br><a href="./">StarRail Theme</a></center></p>
+              </div>
+              </div>
+            </s-card>
+          </div>
+        </s-scroll-view>
+      </div>
+      <div>
+        <s-scroll-view id="contentScroll" style="max-height:100%;">
+          <div id="contentBG" class="selectable" style="width:100vw;min-height:90%">
+            <div id="no_script"><h3><b><center>E07:由于您似乎禁用了Javascript或者出于其它原因，页面无法正常加载。<br>此外，该应用不兼容IE系浏览器。</center></b></h3></div>
+            <center><s-linear-progress id="cooldown" style="visibility:hidden;" value="0" max="3000" -animated="true"></s-linear-progress></center>
+            <center><p id="main-loadedList"></p></center>
+            <center><big><p id="result"><i>就绪……</i></p></big></center>
+          </div>
+        </s-scroll-view>
+      </div>
+    </s-drawer>
+  </s-page>
+  <script src="./list.js"></script>
+  <script src="./javascript/simple.js"></script>
+</body>
+</html>

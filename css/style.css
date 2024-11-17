@@ -3,29 +3,17 @@
   margin: auto;
   text-align: center;
 }
-@font-face {
-  font-family: 'hanyi-65J';
-  src: url('https://kdx233.github.io/res/fonts/hanyi-65J.ttf');
-}
-@font-face {
-  font-family: 'hanyi-65W';
-  src: url('https://kdx233.github.io/res/fonts/hanyi-65W.ttf');
-}
-@font-face {
-  font-family: 'din';
-  src: url('https://kdx233.github.io/res/fonts/DINPro-Medium.otf');
-}
 
 html:not(.is-mobile) *, html:not(.is-mobile) :after, html:not(.is-mobile) :before {    cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAWJAAAFiQFtaJ36AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAANWSURBVHgB7VZNaBNBFH4zm7YW+pNcpD9pmh4UxRZSomJBJbkJUvSiFA+SQkH01OLFS2lu7UWboiBVIcVDERVERRAUGrUYsI0pqJdesv1LPQj5O9gm2RlnNtntpk22TVpTD36Q7MvMy+bb733zXiCy6rfCPgILUqUjHv46tV9EMBAapZQ6MKkMxsKBfigzMEI0ygMptWYECqPxlYC3nGrgtMEg8uB3PCwvUAAXU2MqvhxwQRmAlUBKrWvXrRSBtxxqYFNjp8gDJAi8DDmb5VBDUSCKsaFQzl9VQyWAGAGSXi+YqKgRWZy9CHtPAMkEJJreLt+KBfQiEQ6ORkJBI+wBMgQIWZBLIG1LIJNOST+uJMHI8hcb7BIZAoiXgJlQU4JYPAGTT1/rfdeKkRBMrAaHYNcEKDOhwDxANhSIxRJwfcAtvxaXwgVvQAhxx1YCoVINmvUAjWJDFdA8JeAqnL90De4/nNS7j5UZNFSKGoi/8XOelta8iV8hMDYcVTfrm+05yZaWJnjzbFy+6kAkOOk0NXaJsAOonVAwHABK9E3IS9FxqhuGb4/rpRWlhkwAUSLyK0nl7wNGYw1YrQ3q55E7D2QieiZl3uiP7KCDygTS2YnI27EW9XW1mSsj8G7KA1dd59Q9rkYhk7K6TrAydJrM9gnYCQEQKmQCVJJyCdTXqHErU+CR9xa8Z0S0aigmVdRgT+6sa7b3FueBNZAJ4IqqLQNpM846bDAfegKDQy51jSswzMqCKPWZWk74oAjIBExtnRkCBQbSgvhzy9qg25VTkjNddtZO6EsoElgTi9wD2oFkMec/bh99c3CorQceT7xV165c7gYC1AdFIueRcXYgVRRI5kr09Y7AB0ZgM0532UXWN+agSKgKIIREpDOQbg7ck586349z+ZnzfVACVAKUTUTejLQDqdXcqMZ3Pc8L3oTLL5VQ/xwCCrQDqaP9iNoL9MDkB0gKPigBSAliSzPu5HpiiCtQXXtQJAjGBEIvUIRs337MG6c/B2DaPwuf/AF5VCvgc+G7/5WvznzcCSXAoKESrayuj7JGMkaS2JM9mh6+FVmacRxrP2y70dezhZDF0lTS8dv42SzkfzepClHpCXrghEDANkUhQiWnyXyy6BPwH/8E/gDrE445VXMebgAAAABJRU5ErkJggg==),auto;}
 
 * {
-  font-family: 'din','hanyi-65W','hanyi-65J';
+  font-family: 'din','hanyi-65W','hanyi-65J','MiSans Normal';
   box-sizing: border-box;
   user-select: none; /* 全局禁用选中，因为隔壁的脚本没有什么作用 */
 }
 
 html {
-  font-family: 'din','hanyi-65W','hanyi-65J';
+  font-family: 'din','hanyi-65W','hanyi-65J','MiSans Normal';
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   max-width: 100%;

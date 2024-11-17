@@ -1,0 +1,75 @@
+html, body, s-page {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+s-chip#resetHistoryBtn {
+  margin: 0px 3% 5px 3%;
+  width: 94%;
+}
+
+s-linear-progress#cooldown {
+  width: 100%;
+  height: 0.3vh
+}
+
+#result {
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+  margin: .1vh 0 0 0;
+}
+
+#contentBG {
+  width: 100vw;
+  flex-grow:1;
+  overflow: auto;
+}
+
+* {font-family: 'din','hanyi-65W','hanyi-65J','MiSans Normal';}
+
+.sidebar_btn {
+  width:100%;
+  margin:1% 0 1% 0;
+}
+
+.sidebar_head {
+  width:100%;
+  padding: 3px 3px 3px 3px;
+  margin-bottom: 3%;
+}
+
+.page_root {
+  width:100%;height:100%;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+  }
+.fadeIn {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: fadeIn;
+}
+@keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+  }
+.fadeOut {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: fadeOut;
+}
+
+img.processed {
+  min-width: 50%;
+  max-width: 90%;
+  min-height: 50%;
+  max-height: 90%;
+  margin: 0 auto;
+  display: block;
+}
+.selectable {user-select:text;}
