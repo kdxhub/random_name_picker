@@ -8,19 +8,19 @@ body {
 }
 @media (max-width:585px) {body{width:80vw}}
 @media (min-width:586px) {body{width:60vw}}
-textarea {
+textarea,input {
   padding: 0;
   overflow-y: hidden;
   overflow-x: auto;
   box-sizing: border-box;
   white-space: pre;
   resize: none;
-  width: 100%;
   outline: none;
   border: 2px solid #666;
   border-radius: .75vw;
   background: #c7c7c7;
 }
+textarea {width: 100%;}
 .infos {
   position: relative;
   top: 1rem

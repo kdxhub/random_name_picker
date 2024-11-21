@@ -15,6 +15,11 @@ s-linear-progress#cooldown {
   height: 0.3vh
 }
 
+ol {
+  margin:0 0 0 0;
+  padding:0 0 0 2em;
+}
+
 #result {
   overflow: hidden;
   display: inline-block;

@@ -5,12 +5,6 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
   <title>Random Name Picker [SIMPLE]</title>
-  <script>
-    const CurrentVersion = 2;
-    function configLoaded() {//list.js加载完毕回调
-      if (version <= CurrentVersion) { console.log('成功加载list.js  version=' + version + '  最高支持version=' + CurrentVersion); } else { console.log('list.js加载成功，但是版本过高  version=' + version + '  最高支持version=' + CurrentVersion); };
-    };
-  </script>
   <script src="./javascript/sober@0.4.2.min.js"></script>
 	<link rel="icon" href="./favicon.ico"></link>
 	<link rel="stylesheet" href="./res/DIN/font.css" />
@@ -57,7 +51,7 @@
               <div id="saying" class="selectable">
                 <p><center>This website is powered by <a href="https://github.com/kdxhub/random_name_picker">kdxiaoyi/random_name_picker</a>.
                 <br>Licensed as AGPL-3.0.
-                <br><a href="./">StarRail Theme</a></center></p>
+                <br><a href="./">StarRail Theme</a> | <a href="./config-spawn.html">配置文件生成器</a></center></p>
               </div>
               </div>
             </s-card>
@@ -76,7 +70,7 @@
       </div>
     </s-drawer>
   </s-page>
-  <script src="./list.js"></script>
+  <script id="listJs" src=""></script>
   <script src="./javascript/simple.js"></script>
 </body>
 </html>

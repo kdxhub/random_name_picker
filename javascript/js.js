@@ -1,6 +1,50 @@
-const CurrentVersion = 2;
+const CurrentVersion = 3;
+const main=document.getElementById('main');
+const cgFrame=document.getElementById('cgFrame');
+const cg=document.getElementById("cg");
+const skipCheckBox=document.getElementById("skip");
+
+var nameHistory = {list: null,buffer: null,resetProcessId: 0,};
+nameHistory["append"] = function(goal) {
+  nameHistory.list.unshift(goal);
+  nameHistory.list.pop();
+  setCookie("nameHistory",nameHistory.list.join(","),365000);
+  console.log("更新nameHistory.list",nameHistory.list)
+  return nameHistory.list;
+};
+nameHistory["reset"] = function() {
+  nameHistory.list=new Array(maxHistory).fill("");
+  setCookie("nameHistory",nameHistory.list.join(","),365000);
+  console.warn("重置nameHistory.list",nameHistory.list)
+  return nameHistory.list;
+};
+nameHistory["ClearResetBtnStatusResetting"] = function() {
+  if (nameHistory.resetProcessId != -1) {clearTimeout(nameHistory.resetProcessId);};
+  nameHistory.resetProcessId=-1;
+};
+nameHistory["init"] = function() {
+  if (!getCookie("nameHistory")) {setCookie("nameHistory",Array(maxHistory).join(','),365000);};
+  nameHistory.list = getCookie("nameHistory")./*防止cookie被点炒饭*/replace(/[^\d,]+/,"").split(",",maxHistory);
+  if ((!nameHistory.list) || (nameHistory.list.length != maxHistory)) {
+    setCookie("nameHistory",Array(maxHistory).join(','),365000);
+    nameHistory.list = new Array(maxHistory).fill("");
+    console.warn("Cookie损坏，正在初始化nameHistory.list="+nameHistory.list);
+  };
+  console.log(`nameHistory.list=`,nameHistory.list);
+  return nameHistory.list;
+};
+nameHistory["check"] = function(reinitAfterFailed) {
+  let _CheckResult=false;
+  nameHistory.list = nameHistory.list.map(function(element) {return element.replace(/[^\d]/,"")});
+  if (nameHistory.list.length == maxHistory) {_CheckResult=true;};
+  if (_CheckResult) {return true;};
+  console.error(`nameHistory 已损坏\n`,nameHistory.list);
+  if (reinitAfterFailed) {nameHistory.init();};
+  return false;
+};
+
 function setCookie(cname, cvalue, exdays) { var d = new Date(); d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000)); var expires = "expires=" + d.toGMTString(); document.cookie = cname + "=" + cvalue + "; " + expires }; function getCookie(cname) { var name = cname + "="; var ca = document.cookie.split(';'); for (var i = 0; i < ca.length; i++) { var c = ca[i].trim(); if (c.indexOf(name) == 0) return c.substring(name.length, c.length) }; return null };//cookies操作模块
-function range(min, max) { return Math.round(Math.random() * (max - min) + min); }; function getQueryString(name) { let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); let r = window.location.search.substr(1).match(reg); if (r != null) { return unescape(r[2]); }; return null; }; function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }; function removeElement(ElementId) { document.getElementById(ElementId).remove(); };//加载一些通用模块
+function range(min, max) { return Math.floor(Math.random() * (max - min +1) + min); }; function getQueryString(name) { let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); let r = window.location.search.substr(1).match(reg); if (r != null) { return unescape(r[2]); }; return null; }; function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }; function removeElement(ElementId) { document.getElementById(ElementId).remove(); };//加载一些通用模块
 function r() { start(); cgEnded(); };// debug:快速生成结果并展示
 function lowUsage() {
   console.log('低特效已启用');
@@ -12,9 +56,12 @@ function start() {//「祈愿10次」按钮点击
   console.log('start wishing');
   output = []; outputStar = [];
   //生成抽卡结果
+  nameHistory.buffer=nameHistory.list;
   for (i = 0; i < 10; i++) {
     var step = range(0, name.length - 1);
+    if (!((nameHistory.buffer.indexOf(step) == -1) && (nameHistory.buffer.indexOf(step.toString()) == -1))) { console.log(i-- + '随机值与历史记录重复' + step); continue; };
     if (output.indexOf(name[step]) != -1) { console.log(i-- + '重复随机值' + step); continue; };
+    nameHistory.append(step);
     output.push(name[step]);
     if (star[step] <= 3) { outputStar.push(3); };
     if (star[step] == 4) { outputStar.push(4); };
@@ -24,20 +71,28 @@ function start() {//「祈愿10次」按钮点击
   console.log('output=' + output.toString()); console.log('outputStar=' + outputStar.toString());
 
   //播放抽卡动画
-  if (outputStar.indexOf(4) != -1) { document.getElementById("cg").src = './res/cg4.mp4'; console.log("存在星级4"); };
-  if (outputStar.indexOf(5) != -1) { document.getElementById("cg").src = './res/cg5.mp4'; console.log("存在星级5"); };
-  document.getElementById("cg").loop = false;
-  document.getElementById('main').className = 'mainDisabled';
-  document.getElementById('cgFrame').className = 'cgFrame';
-  document.getElementById("cg").play();
-  if (document.getElementById("skip").checked == true) { cgEnded(); };
-  if (document.getElementById("skip").checked == true) { setCookie("skip_enabled", "true"); } else { setCookie("skip_enabled", "false"); };
+  if (outputStar.indexOf(4) != -1) { cg.src = './res/cg4.mp4'; console.log("存在星级4"); };
+  if (outputStar.indexOf(5) != -1) { cg.src = './res/cg5.mp4'; console.log("存在星级5"); };
+  cg.loop = false;
+  main.className = 'mainDisabled';
+  cgFrame.className = 'cgFrame';
+  cg.play();
+  if (skipCheckBox.checked == true) { cgEnded(); };
+  if (skipCheckBox.checked == true) { setCookie("skip_enabled", "true"); } else { setCookie("skip_enabled", "false"); };
 };
 function startSingle() {//「祈愿1次」按钮点击
   console.log('start wishing');
   output = []; outputStar = [];
   //生成抽卡结果
   var step = range(0, name.length - 1);
+  nameHistory.buffer=nameHistory.list;
+  while (!(
+    (nameHistory.buffer.indexOf(step) == -1)
+    && (nameHistory.buffer.indexOf(step.toString()) == -1)
+  )) {
+    step=range(0,name.length-1);
+  };
+  nameHistory.append(step);
   output.push(name[step]);
   if (star[step] <= 3) { outputStar.push(3); };
   if (star[step] == 4) { outputStar.push(4); };
@@ -46,18 +101,18 @@ function startSingle() {//「祈愿1次」按钮点击
 
   //播放抽卡动画
   single = true;
-  if (outputStar.indexOf(4) != -1) { document.getElementById("cg").src = './res/cg4.mp4'; console.log("存在星级4"); };
-  if (outputStar.indexOf(5) != -1) { document.getElementById("cg").src = './res/cg5.mp4'; console.log("存在星级5"); };
-  document.getElementById("cg").loop = false;
-  document.getElementById('main').className = 'mainDisabled';
-  document.getElementById('cgFrame').className = 'cgFrame';
-  document.getElementById("cg").play();
-  if (document.getElementById("skip").checked == true) { cgEnded(); };
-  if (document.getElementById("skip").checked == true) { setCookie("skip_enabled", "true"); } else { setCookie("skip_enabled", "false"); };
+  if (outputStar.indexOf(4) != -1) { cg.src = './res/cg4.mp4'; console.log("存在星级4"); };
+  if (outputStar.indexOf(5) != -1) { cg.src = './res/cg5.mp4'; console.log("存在星级5"); };
+  cg.loop = false;
+  main.className = 'mainDisabled';
+  cgFrame.className = 'cgFrame';
+  cg.play();
+  if (skipCheckBox.checked == true) { cgEnded(); };
+  if (skipCheckBox.checked == true) { setCookie("skip_enabled", "true"); } else { setCookie("skip_enabled", "false"); };
 };
 function cgEnded() {//cg播放完成回调
-  document.getElementById("cg").pause();
-  document.getElementById('cgFrame').className = 'cgFrameDisabled';
+  cg.pause();
+  cgFrame.className = 'cgFrameDisabled';
   if (single == true) {
     document.getElementById('resultSingle').className = 'result';
     nextSingle();
@@ -159,24 +214,37 @@ function total() {//抽卡结果顺序展示完毕，展示全部
   document.getElementById('total').className = 'total';
 };
 function total_back() {//返回抽卡界面
-  document.getElementById('main').className = 'main';
+  main.className = 'main';
   document.getElementById('total').className = 'totalDisabled';
   document.getElementById('resultBgm').pause();
   location.reload();
 };
 function resultSingleReturn() {//单抽返回主界面
-  document.getElementById('main').className = 'main';
+  main.className = 'main';
   document.getElementById('resultSingle').className = 'resultDisabled';
   document.getElementById('resultBgm').pause();
   location.reload();
 };
 function configLoaded() {//list.js加载完毕回调
+  /*v3特性向下兼容 list.js*/
+    if (!(typeof maxHistory === 'number')) {console.warn("list.js v3向下兼容[maxHistory]已启用");var maxHistory=10;};
+  //cookie载入
+  nameHistory.init();nameHistory.check(true);
   if (version <= CurrentVersion) { console.log('成功加载list.js  version=' + version + '  最高支持version=' + CurrentVersion); } else { console.log('list.js加载成功，但是版本过高  version=' + version + '  最高支持version=' + CurrentVersion); };
 };
 function configSpawn() {//跳转到config-spawn.html
   var hidden_a = document.createElement('a'); 
   // DIY_config-spawn.html地址修改 ↓
   var csurl="./config-spawn.html";
+  if (ThirdList==true) {hidden_a.setAttribute('href', csurl+'?list='+getQueryString("list"));} else {hidden_a.setAttribute('href', csurl);};
+  hidden_a.setAttribute('target', "_blank"); 
+  document.body.appendChild(hidden_a); hidden_a.click();
+  hidden_a.remove();return;
+};
+function historyPage() {//跳转到config-spawn.html
+  var hidden_a = document.createElement('a'); 
+  // DIY_config-spawn.html地址修改 ↓
+  var csurl="./history.html";
   if (ThirdList==true) {hidden_a.setAttribute('href', csurl+'?list='+getQueryString("list"));} else {hidden_a.setAttribute('href', csurl);};
   hidden_a.setAttribute('target', "_blank"); 
   document.body.appendChild(hidden_a); hidden_a.click();
@@ -189,7 +257,7 @@ const fiveOutline = "-webkit-box-shadow: 0 0 1.65861rem .04252845rem #eec556, in
 //声明变量
 var output = []; var outputStar = []; var now = -1; var single = false;
 // 监听ended事件并注册回调
-document.getElementById("cg").addEventListener("ended", (event) => { cgEnded(); });
+cg.addEventListener("ended", (event) => { cgEnded(); });
 //背景音乐单曲循环（Event方法）（事实上loop和Event同时生效了）
 document.getElementById("resultBgm").addEventListener("ended", (event) => { document.getElementById('resultBgm').currentTime = 0; document.getElementById('resultBgm').play(); });
 //加载list.js
@@ -216,7 +284,7 @@ document.getElementById("main").setAttribute("class", "main"); document.getEleme
 if (getQueryString('debug') == 'r') { console.log('调试参数：r()'); r(); };
 if (getQueryString('lowUsage') == 'enabled') { lowUsage() };
 // 「跳过动画」勾选状态存续
-if (getCookie("skip_enabled") == "true") { document.getElementById("skip").checked = true; };
+if (getCookie("skip_enabled") == "true") { skipCheckBox.checked = true; };
 if (getCookie("skip_enabled") == null) { setCookie("skip_enabled", "false"); };
-document.getElementById("skip").addEventListener("input", function () {if (document.getElementById("skip").checked == true) { setCookie("skip_enabled", "true"); } else { setCookie("skip_enabled", "false"); };});
-console.log('主函数加载成功'); console.log("Copyright (C) 2024 kdxiaoyi. All right reserved.");
+skipCheckBox.addEventListener("input", function () {if (skipCheckBox.checked == true) { setCookie("skip_enabled", "true"); } else { setCookie("skip_enabled", "false"); };});
+console.log('主函数加载成功'); console.log("Copyright (C) 2024 kdxiaoyi. All right reserved.\nhttps://github.com/kdxhub/random_name_picker");

@@ -1,6 +1,7 @@
   //模块:文本行操作
 String.prototype.lines = function() { return this.split(/\r*\n/); };String.prototype.lineCount = function() { return this.lines().length; };
 //定义变量
+const maxHistoryE=document.getElementById('maxHistoryInput');
 const namesE=document.getElementById('names');
 const starsE=document.getElementById('stars');
 const outE=document.getElementById('output');
@@ -18,6 +19,8 @@ function refreshResult() {//动态刷新状态栏
   namesE.style.height = "inherit";namesE.style.height = `${namesE.scrollHeight+10}px`;
   starF= namesE.style.height / names.lineCount() ;
   starsE.setAttribute("style",`font-weight: `+starF+`px;`+`height: ${namesE.style.height};`);
+  maxHistoryE.max = names.lineCount();
+  if (maxHistoryE.value > names.lineCount()) {maxHistoryE.value=names.lineCount();};
 };
 function spawn() {//生成配置文件
   outE.value="";refreshResult();
@@ -25,6 +28,7 @@ function spawn() {//生成配置文件
   starsE.value=starsE.value.replace(/[^0123456789\n]/g, '');  
   var n=namesE.value.lines();var s=starsE.value.lines();
   if (n.length != s.length) {document.getElementById("errorTip").innerHTML="× 请确保姓名与星级一一对应";document.getElementById("errorTip").setAttribute("style","background:#f47a7aae;margin: .3rem 0 0 0;");return;};
+  if (maxHistoryE.value < 5) {document.getElementById("errorTip").innerHTML="× 历史记录数不能小于5";document.getElementById("errorTip").setAttribute("style","background:#f47a7aae;margin: .3rem 0 0 0;");return;};
   outE.value += "const name=[";for (i = 0; i < (n.length-1); i++) {outE.value += "\""+n[i]+"\"\,";};outE.value += "\""+n[n.length-1]+"\"]\;\r";
   outE.value += "const star=[";
   for (i = 0; i < (s.length-1); i++) {
@@ -35,7 +39,8 @@ function spawn() {//生成配置文件
   if (Number(s[s.length-1]) <= 3) {outE.value += "3]\;";};
   if (Number(s[s.length-1]) == 4) {outE.value += "4]\;";};
   if (Number(s[s.length-1]) >= 5) {outE.value += "5]\;";};outE.value += "\r";
-  outE.value += `const version=2;`;outE.value += "\r";
+  outE.value += `const maxHistory = ${maxHistoryE.value};`;outE.value += "\r";
+  outE.value += `const version = 3;`;outE.value += "\r";
   outE.value += `//配置文件编辑器：`;outE.value += "\r";
   outE.value += `// https://kdxhub.github.io/random_name_picker/comfig-spawn.html`;outE.value += "\r";
   outE.value += `// 根目录下config-spawn.html`;outE.value += "\r";
@@ -54,17 +59,20 @@ function clearT() {//清空区域
 //变量初始化
 var starF=1;
 //textarea自适应高度
+maxHistoryE.addEventListener("input",function(){refreshResult();});
 namesE.addEventListener("input",function(){refreshResult();});
 starsE.addEventListener("input",function(){refreshResult();});
 outE.addEventListener("select", function() {this.style.height = "inherit";this.style.height = `${this.scrollHeight}px`;refreshResult();});
 //加载list.js
 function configLoaded() {//list.js加载完毕回调
+  /*v3特性向下兼容 list.js*/if (!(typeof maxHistory === 'number')) {console.warn("list.js v3向下兼容[maxHistory]已启用");let maxHistory=10;};
   namesE.value="";starsE.value="";
   for (i=0;i< (name.length - 1);i++) {namesE.value += name[i]+"\n";};
   for (i=0;i< (star.length - 1);i++) {starsE.value += star[i]+"\n";};
   namesE.value += name[name.length - 1];
   starsE.value += star[star.length - 1];
   refreshResult();
+  maxHistoryE.value=maxHistory;
 };
 var listJsElement = document.createElement("script");
 if (getQueryString('list') == null) {
@@ -86,3 +94,4 @@ document.getElementById("errorTip").setAttribute("style","display:none;");
 document.getElementById("noscript").setAttribute("style","display:none;");
 //强制刷新一次布局
 refreshResult();
+maxHistoryE.value=10;

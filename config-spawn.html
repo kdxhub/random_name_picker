@@ -30,6 +30,9 @@
     <small><p id="state"></p></small><br>
   </div>
   <div class="outputsArea center">
+    <br>历史记录最大长度：<input value="10" type="number" id="maxHistoryInput" min="5" max="2147483647"></input>
+      <br><small>↑ 在历史记录中的名字不会被重复抽出</small>
+    <br><br>
     <textarea class="stars" id="stars" spellcheck="false" warp="off" placeholder="输入对应星级…" ></textarea>
     <textarea class="names" id="names" spellcheck="true" warp="off" placeholder="输入姓名表…" autofocus></textarea>
     <br><textarea class="outputs" id="output" spellcheck="false" warp="off" placeholder="输出结果……" readonly>等待输出……</textarea>
