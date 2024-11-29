@@ -19,8 +19,10 @@ function refreshResult() {//动态刷新状态栏
   namesE.style.height = "inherit";namesE.style.height = `${namesE.scrollHeight+10}px`;
   starF= namesE.style.height / names.lineCount() ;
   starsE.setAttribute("style",`font-weight: `+starF+`px;`+`height: ${namesE.style.height};`);
-  maxHistoryE.max = names.lineCount();
-  if (maxHistoryE.value > names.lineCount()) {maxHistoryE.value=names.lineCount();};
+  /*更新maxHistory的值，这个值需要+10后＜总姓名数量*/
+  maxHistoryE.max = (names.lineCount()-11);
+  if (maxHistoryE.value > (names.lineCount()-11)) {maxHistoryE.value=(names.lineCount()-11);};
+  if (/*修正负值错误*/maxHistoryE.value < 0) {maxHistoryE.value=0;};
 };
 function spawn() {//生成配置文件
   outE.value="";refreshResult();

@@ -46,7 +46,7 @@ const iconBtnStatus=["filled","filled-tonal","outlined",""];
 
 function configLoaded() {//list.js加载完毕回调
   /*v3特性向下兼容 list.js*/
-    if (!(typeof maxHistory === 'number')) {console.warn("list.js v3向下兼容[maxHistory]已启用");var maxHistory=10;};
+    if (!(typeof maxHistory === 'number')) {console.warn("list.js v3向下兼容[maxHistory]已启用");var maxHistory=0;};
   //cookie载入
   nameHistory.init();nameHistory.check(true);
   if (version <= CurrentVersion) { console.log('成功加载list.js  version=' + version + '  最高支持version=' + CurrentVersion); } else { console.log('list.js加载成功，但是版本过高  version=' + version + '  最高支持version=' + CurrentVersion); };

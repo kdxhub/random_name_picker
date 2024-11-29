@@ -1,0 +1,23 @@
+Random Name Picker
+Copyright (C) 2024 kdxiaoyi.
+Licensed as AGPL-3.0.
+
+原作者联系方式：
+Contact the author:
+* kdxiaoyi@outlook.com
+* http://space.bilibili.com/1987247870
+
+如果您是以付费方式获得此免费软件，请举报并退款。
+此软件可以以任何形式分发，但不得收费且需保留此声明与原作者信息。
+If you got this free software by paying, please report it and get a refund.
+This software can be distributed in any form, but there is no charge, and this statement and the original author information should be kept.
+
+需注意，此软件引用的部分字体和部分素材来源网络，仅限个人使用。
+如有侵权，联系删除。
+It should be noted that some fonts and some materials cited by this software come from the network, which is for personal use only.
+If there is any infringement, contact to delete.
+
+源代码在此处开源：
+The source code is open source here:
+* https://gitee.com/kdxiaoyi/random_name_picker
+* https://github.com/kdxhub/random_name_picker

@@ -8,7 +8,7 @@ title: "部署到本地"
 * 便携式存储设备（以便将本地项目复制到其它地方）
 
 ## 准备点名表
-1. 下载此仓库的源代码（[Github](https://github.com/kdxhub/random_name_picker/) | [Gitee](https://gitee.com/kdXiaoyi/random_name_picker/)）
+1. 下载此仓库的发行版（[Github](https://github.com/kdxhub/random_name_picker/releases) | [Gitee](https://gitee.com/kdXiaoyi/random_name_picker/releases)）
 2. **全部**解压您下载的压缩包
 3. 使用任一**除WPS或Microsoft Word外的**编辑器打开`list.js`，根据注释修改对应点名表与星级 （**必须使用英文标点**）<br>推荐的编辑器：[在线VSCode](https://vscode.dev) / [安卓-MT管理器](https://mt2.cn/)
 4. 保存

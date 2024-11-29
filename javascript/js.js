@@ -59,8 +59,8 @@ function start() {//「祈愿10次」按钮点击
   nameHistory.buffer=nameHistory.list;
   for (i = 0; i < 10; i++) {
     var step = range(0, name.length - 1);
-    if (!((nameHistory.buffer.indexOf(step) == -1) && (nameHistory.buffer.indexOf(step.toString()) == -1))) { console.log(i-- + '随机值与历史记录重复' + step); continue; };
-    if (output.indexOf(name[step]) != -1) { console.log(i-- + '重复随机值' + step); continue; };
+    if (!((nameHistory.buffer.indexOf(step) == -1) && (nameHistory.buffer.indexOf(step.toString()) == -1))) { console.log(`试图生成结果#`+i-- + '时：与历史记录重复' + step); continue; };
+    if (output.indexOf(name[step]) != -1) { console.log(`试图生成结果#`+i-- + '时：与已抽出结果重复' + step); continue; };
     nameHistory.append(step);
     output.push(name[step]);
     if (star[step] <= 3) { outputStar.push(3); };
@@ -227,9 +227,10 @@ function resultSingleReturn() {//单抽返回主界面
 };
 function configLoaded() {//list.js加载完毕回调
   /*v3特性向下兼容 list.js*/
-    if (!(typeof maxHistory === 'number')) {console.warn("list.js v3向下兼容[maxHistory]已启用");var maxHistory=10;};
+    if (!(typeof maxHistory === 'number')) {console.warn("list.js v3向下兼容[maxHistory]已启用");var maxHistory=0;};
   //cookie载入
   nameHistory.init();nameHistory.check(true);
+  if ((maxHistory<0) || maxHistory > (name.length-10)) {DisableStart("E08：请重新生成配置文件并应用。");};
   if (version <= CurrentVersion) { console.log('成功加载list.js  version=' + version + '  最高支持version=' + CurrentVersion); } else { console.log('list.js加载成功，但是版本过高  version=' + version + '  最高支持version=' + CurrentVersion); };
 };
 function configSpawn() {//跳转到config-spawn.html
