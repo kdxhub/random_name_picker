@@ -1,4 +1,4 @@
-const CurrentVersion = 3;
+const CurrentVersion = 4;
 const main=document.getElementById('main');
 const cgFrame=document.getElementById('cgFrame');
 const cg=document.getElementById("cg");
@@ -43,7 +43,8 @@ nameHistory["check"] = function(reinitAfterFailed) {
   return false;
 };
 
-function setCookie(cname, cvalue, exdays) { var d = new Date(); d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000)); var expires = "expires=" + d.toGMTString(); document.cookie = cname + "=" + cvalue + "; " + expires }; function getCookie(cname) { var name = cname + "="; var ca = document.cookie.split(';'); for (var i = 0; i < ca.length; i++) { var c = ca[i].trim(); if (c.indexOf(name) == 0) return c.substring(name.length, c.length) }; return null };//cookies操作模块
+function setCookie(cname, cvalue, exdays) { var d = new Date(); d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000)); var expires = "expires=" + d.toGMTString(); document.cookie = cname + "=" + cvalue + "; " + expires };
+function getCookie(cname) { var name = cname + "="; var ca = document.cookie.split(';'); for (var i = 0; i < ca.length; i++) { var c = ca[i].trim(); if (c.indexOf(name) == 0) return c.substring(name.length, c.length) }; return "" };//cookies操作模块
 function range(min, max) { return Math.floor(Math.random() * (max - min +1) + min); }; function getQueryString(name) { let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); let r = window.location.search.substr(1).match(reg); if (r != null) { return unescape(r[2]); }; return null; }; function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }; function removeElement(ElementId) { document.getElementById(ElementId).remove(); };//加载一些通用模块
 function r() { start(); cgEnded(); };// debug:快速生成结果并展示
 function lowUsage() {

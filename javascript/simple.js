@@ -1,4 +1,4 @@
-const CurrentVersion = 3;
+const CurrentVersion = 4;
 
 var nameHistory = {list: null,buffer: null,resetProcessId: 0,};
 nameHistory["append"] = function(goal) {
@@ -39,7 +39,7 @@ nameHistory["check"] = function(reinitAfterFailed) {
   return false;
 };
 function msg(Message, ConfirmText, isWarning) {let infoJson={};infoJson.root=document.querySelector('s-page');infoJson.text=Message;if (ConfirmText==undefined) {infoJson.action="";} else {infoJson.action=ConfirmText;};if (isWarning!=undefined) {infoJson.type="error";};customElements.get('s-snackbar').show(infoJson);console.log("创建了新的Snakbar\n",infoJson);return infoJson;};
-function setCookie(cname, cvalue, exdays) { var d = new Date(); d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000)); var expires = "expires=" + d.toGMTString(); document.cookie = cname + "=" + cvalue + "; " + expires }; function getCookie(cname) { var name = cname + "="; var ca = document.cookie.split(';'); for (var i = 0; i < ca.length; i++) { var c = ca[i].trim(); if (c.indexOf(name) == 0) return c.substring(name.length, c.length) }; return null };//cookies操作模块
+function setCookie(cname, cvalue, exdays) { var d = new Date(); d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000)); var expires = "expires=" + d.toGMTString(); document.cookie = cname + "=" + cvalue + "; " + expires }; function getCookie(cname) { var name = cname + "="; var ca = document.cookie.split(';'); for (var i = 0; i < ca.length; i++) { var c = ca[i].trim(); if (c.indexOf(name) == 0) return c.substring(name.length, c.length) }; return "" };//cookies操作模块
 function range(min, max) { return Math.floor(Math.random() * (max - min +1) + min); }; function getQueryString(name) { let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); let r = window.location.search.substr(1).match(reg); if (r != null) { return unescape(r[2]); }; return null; }; function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }; function removeElement(ElementId) { document.getElementById(ElementId).remove(); };//加载一些通用模块
 function /*debug用 统计抽取一定次数时某目标概率*/ probabilitysStatistics(goal, maxTryTimes) {let originData=Array.from({ length: maxTryTimes }, () => range(1,name.length));let fitterData=originData.filter(item => item === goal).length;console.log(`尝试了${maxTryTimes}次，命中${fitterData}次：\n实际命中率=${fitterData/maxTryTimes}\n理论命中率=${1/name.length}\nname.length=${name.length}\n原始数据见后。`,originData);return "done";};
 const iconBtnStatus=["filled","filled-tonal","outlined",""];

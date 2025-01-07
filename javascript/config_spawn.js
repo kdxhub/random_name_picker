@@ -42,7 +42,7 @@ function spawn() {//生成配置文件
   if (Number(s[s.length-1]) == 4) {outE.value += "4]\;";};
   if (Number(s[s.length-1]) >= 5) {outE.value += "5]\;";};outE.value += "\r";
   outE.value += `const maxHistory = ${maxHistoryE.value};`;outE.value += "\r";
-  outE.value += `const version = 3;`;outE.value += "\r";
+  outE.value += `const version = 4;`;outE.value += "\r";
   outE.value += `//配置文件编辑器：`;outE.value += "\r";
   outE.value += `// https://kdxhub.github.io/random_name_picker/comfig-spawn.html`;outE.value += "\r";
   outE.value += `// 根目录下config-spawn.html`;outE.value += "\r";
